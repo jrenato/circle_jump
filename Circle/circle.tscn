@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj7a4lchc8gh8"]
+
+[ext_resource type="Script" path="res://Circle/circle.gd" id="1_1qqjh"]
+[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_g1c4m"]
+[ext_resource type="Texture2D" uid="uid://d2cyw3pwjae06" path="res://Assets/Images/circle_1.png" id="1_mknme"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifdf6"]
+shader = ExtResource("1_g1c4m")
+shader_parameter/color = Color(0, 0, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3iodi"]
+radius = 134.034
+
+[node name="Circle" type="Area2D"]
+script = ExtResource("1_1qqjh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ifdf6")
+texture = ExtResource("1_mknme")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_3iodi")
+
+[node name="Pivot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="OrbitPosition" type="Marker2D" parent="Pivot"]
+unique_name_in_owner = true

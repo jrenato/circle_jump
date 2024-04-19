@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://klhics3c6r1a"]
+
+[ext_resource type="Texture2D" uid="uid://bygpeeo2vrmv6" path="res://Assets/Images/jumper.png" id="1_e32ii"]
+[ext_resource type="Script" path="res://Jumper/jumper.gd" id="1_lxmx5"]
+[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="2_hkoh7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ypoxg"]
+shader = ExtResource("2_hkoh7")
+shader_parameter/color = Color(0, 0.8, 0.67451, 1)
+
+[node name="Jumper" type="Area2D"]
+script = ExtResource("1_lxmx5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-20, -20, 21, 0, -21, 21)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ypoxg")
+rotation = 1.5708
+texture = ExtResource("1_e32ii")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
