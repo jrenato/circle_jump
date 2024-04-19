@@ -1,5 +1,7 @@
 class_name Jumper extends Area2D
 
+signal captured(area: Area2D)
+
 var velocity: Vector2 = Vector2(100, 0)
 var jump_speed: int = 1000
 var target: Node2D = null
@@ -20,9 +22,10 @@ func _physics_process(delta: float) -> void:
 		position += velocity * delta
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if target and event is InputEventScreenTouch and event.pressed:
-		jump()
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		if target:
+			jump()
 
 
 func jump() -> void:
@@ -33,4 +36,4 @@ func jump() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	target = area
 	velocity = Vector2.ZERO
-
+	captured.emit(area)

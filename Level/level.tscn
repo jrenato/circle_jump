@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://c654gl6qdi5ky"]
+[gd_scene load_steps=4 format=3 uid="uid://c654gl6qdi5ky"]
 
+[ext_resource type="Script" path="res://Level/level.gd" id="1_37qhi"]
 [ext_resource type="PackedScene" uid="uid://cj7a4lchc8gh8" path="res://Circle/circle.tscn" id="1_qvx3t"]
 [ext_resource type="PackedScene" uid="uid://klhics3c6r1a" path="res://Jumper/jumper.tscn" id="2_qsutf"]
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_37qhi")
+circle_scene = ExtResource("1_qvx3t")
+jumper_scene = ExtResource("2_qsutf")
 
-[node name="Circle" parent="." instance=ExtResource("1_qvx3t")]
-position = Vector2(335, 563)
+[node name="StartPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(250, 780)
 
-[node name="Jumper" parent="." instance=ExtResource("2_qsutf")]
-position = Vector2(31, 559)
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(241, 629)
+offset = Vector2(0, -200)
+position_smoothing_enabled = true

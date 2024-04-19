@@ -10,10 +10,11 @@ var rotation_speed: float = PI
 
 
 func _ready() -> void:
-	init()
+	pass
 
 
-func init(_radius=radius):
+func init(_position: Vector2, _radius: int = radius):
+	position = _position
 	radius = _radius
 	collision_shape.shape = collision_shape.shape.duplicate()
 	collision_shape.shape.radius = radius
