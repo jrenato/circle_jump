@@ -4,7 +4,7 @@ signal captured(area: Area2D)
 
 var velocity: Vector2 = Vector2(100, 0)
 var jump_speed: int = 1000
-var target: Node2D = null
+var target: Circle = null
 
 
 func _ready() -> void:
@@ -34,6 +34,8 @@ func jump() -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	target = area
-	velocity = Vector2.ZERO
-	captured.emit(area)
+	if area is Circle:
+		target = area as Circle
+		velocity = Vector2.ZERO
+		target.pivot.rotation = (position - target.position).angle()
+		captured.emit(area)

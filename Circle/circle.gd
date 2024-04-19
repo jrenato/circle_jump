@@ -16,9 +16,11 @@ func _ready() -> void:
 func init(_position: Vector2, _radius: int = radius):
 	position = _position
 	radius = _radius
+	rotation_speed *= pow(-1, randi() % 2)
+
 	collision_shape.shape = collision_shape.shape.duplicate()
 	collision_shape.shape.radius = radius
-	var img_size = sprite.texture.get_size().x / 2
+	var img_size: float = sprite.texture.get_size().x / 2.0
 	sprite.scale = Vector2(1, 1) * radius / img_size
 	orbit_position.position.x = radius + 25
 

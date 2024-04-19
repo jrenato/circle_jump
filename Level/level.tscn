@@ -11,10 +11,11 @@ jumper_scene = ExtResource("2_qsutf")
 
 [node name="StartPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(250, 780)
+position = Vector2(240, 630)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(241, 629)
+position = Vector2(240, 630)
 offset = Vector2(0, -200)
 position_smoothing_enabled = true
+position_smoothing_speed = 7.0
