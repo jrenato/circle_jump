@@ -37,6 +37,7 @@ func _physics_process(delta: float) -> void:
 
 
 func jump() -> void:
+	target.implode()
 	target = null
 	velocity = transform.x * jump_speed
 

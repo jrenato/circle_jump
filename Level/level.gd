@@ -37,8 +37,19 @@ func spawn_circle(_position: Vector2) -> void:
 
 
 func _on_jumper_captured(target_area: Area2D) -> void:
-	camera.position = target_area.position
+	if not target_area is Circle:
+		return
+
+	var target_circle: Circle = target_area
+	
+	# Updated the camera position
+	camera.position = target_circle.position
+
+	# Animate the circle capture
+	target_circle.capture()
+
+	# Spawn next circle
 	var next_circle_x: int = randi_range(-150, 150)
 	var next_circle_y: int = randi_range(-500, -400)
-	var next_circle_position: Vector2 = target_area.position + Vector2(next_circle_x, next_circle_y)
+	var next_circle_position: Vector2 = target_circle.position + Vector2(next_circle_x, next_circle_y)
 	spawn_circle.call_deferred(next_circle_position)

@@ -6,11 +6,13 @@ var rotation_speed: float = PI
 @onready var pivot: Node2D = %Pivot
 @onready var collision_shape: CollisionShape2D = %CollisionShape2D
 @onready var sprite: Sprite2D = %Sprite2D
+@onready var sprite_effect = %SpriteEffect
 @onready var orbit_position: Marker2D = %OrbitPosition
+@onready var animation_player = %AnimationPlayer
 
 
 func _ready() -> void:
-	pass
+	sprite_effect.visible = false
 
 
 func init(_position: Vector2, _radius: int = radius):
@@ -27,3 +29,14 @@ func init(_position: Vector2, _radius: int = radius):
 
 func _process(delta: float) -> void:
 	pivot.rotation += rotation_speed * delta
+
+
+func capture() -> void:
+	animation_player.play("capture")
+
+
+func implode() -> void:
+	if !animation_player.is_playing():
+		animation_player.play("implode")
+	await animation_player.animation_finished
+	queue_free()
