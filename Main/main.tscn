@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c654gl6qdi5ky"]
+
+[ext_resource type="Script" path="res://Main/main.gd" id="1_f463y"]
+[ext_resource type="PackedScene" uid="uid://cj7a4lchc8gh8" path="res://Circle/circle.tscn" id="2_rdiop"]
+[ext_resource type="PackedScene" uid="uid://klhics3c6r1a" path="res://Jumper/jumper.tscn" id="3_42k7g"]
+[ext_resource type="PackedScene" uid="uid://g5cp30neerml" path="res://GUI/screens.tscn" id="4_vdj2v"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_f463y")
+circle_scene = ExtResource("2_rdiop")
+jumper_scene = ExtResource("3_42k7g")
+
+[node name="Screens" parent="." instance=ExtResource("4_vdj2v")]
+unique_name_in_owner = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(240, 630)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(240, 630)
+offset = Vector2(0, -200)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
