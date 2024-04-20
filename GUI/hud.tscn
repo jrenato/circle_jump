@@ -1,0 +1,200 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4ackxvfw2y11"]
+
+[ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="1_jrovp"]
+[ext_resource type="Script" path="res://GUI/hud.gd" id="1_l8by6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l2qto"]
+font = ExtResource("1_jrovp")
+
+[sub_resource type="LabelSettings" id="LabelSettings_m6s43"]
+font = ExtResource("1_jrovp")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_nrd11"]
+font = ExtResource("1_jrovp")
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_uca6p"]
+resource_name = "show_message"
+length = 0.75
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Message:label_settings:font_size")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [64, 200]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Message:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k6gf0"]
+resource_name = "init"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:label_settings:font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [64]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Message:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_708op"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:label_settings:font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [32]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Message:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Message:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g3pj3"]
+_data = {
+"RESET": SubResource("Animation_708op"),
+"init": SubResource("Animation_k6gf0"),
+"show_message": SubResource("Animation_uca6p")
+}
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l8by6")
+
+[node name="ScoreBox" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreBox"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ScoreBox/HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Score"
+label_settings = SubResource("LabelSettings_l2qto")
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="ScoreBox/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 1
+text = "100"
+label_settings = SubResource("LabelSettings_m6s43")
+
+[node name="Message" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+text = "Message"
+label_settings = SubResource("LabelSettings_nrd11")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_g3pj3")
+}
+autoplay = "init"

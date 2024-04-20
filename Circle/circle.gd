@@ -31,6 +31,8 @@ var orbit_start: float = 0.0:
 var max_orbits: int = 3 # Number of orbits until the circle disappears
 var orbits_left: int = 0 # Number of orbits the jumper has completed
 
+var points: int = 1
+
 @onready var pivot: Node2D = %Pivot
 @onready var collision_shape: CollisionShape2D = %CollisionShape2D
 @onready var sprite: Sprite2D = %Sprite2D
