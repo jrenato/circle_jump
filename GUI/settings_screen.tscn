@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://y10oo7cyr6jj"]
+
+[ext_resource type="PackedScene" uid="uid://wkrtdtagpjo0" path="res://GUI/base_screen.tscn" id="1_hgqna"]
+[ext_resource type="Texture2D" uid="uid://bnypq2un6ut0x" path="res://Assets/Images/buttons/audioOn.png" id="2_jq21h"]
+[ext_resource type="Texture2D" uid="uid://vdudj5cq23ga" path="res://Assets/Images/buttons/musicOn.png" id="3_ii7qc"]
+[ext_resource type="Texture2D" uid="uid://b273l7x3utu5i" path="res://Assets/Images/buttons/return.png" id="4_8dsq1"]
+
+[node name="SettingsScreen" instance=ExtResource("1_hgqna")]
+
+[node name="Label" parent="MarginContainer/VBoxContainer" index="0"]
+text = "Settings"
+
+[node name="SoundButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="0" groups=["buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("2_jq21h")
+
+[node name="MusicButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="1" groups=["buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_ii7qc")
+
+[node name="SettingsBackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons2" index="0" groups=["buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("4_8dsq1")

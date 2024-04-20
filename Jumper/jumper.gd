@@ -1,6 +1,7 @@
 class_name Jumper extends Area2D
 
 signal captured(area: Area2D)
+signal died
 
 var velocity: Vector2 = Vector2(100, 0)
 var jump_speed: int = 1000
@@ -56,4 +57,5 @@ func _on_area_entered(area: Area2D) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	if not target:
+		died.emit()
 		die()
