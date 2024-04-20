@@ -18,12 +18,6 @@ func _process(delta) -> void:
 	pass
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch or event is InputEventMouseButton:
-		if target and event.is_pressed():
-			jump()
-
-
 func _physics_process(delta: float) -> void:
 	if target:
 		transform = target.orbit_position.global_transform
@@ -34,6 +28,12 @@ func _physics_process(delta: float) -> void:
 	if trail.points.size() > trail_length:
 		trail.remove_point(0)
 	trail.add_point(position)
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		if target and event.is_pressed():
+			jump()
 
 
 func jump() -> void:

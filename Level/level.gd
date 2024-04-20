@@ -22,18 +22,22 @@ func _process(delta: float) -> void:
 
 func new_game() -> void:
 	camera.position = start_position.position
+	spawn_jumper()
+	spawn_circle(start_position.position, Circle.MODE.STATIC)
+
+
+func spawn_jumper() -> void:
 	player = jumper_scene.instantiate()
-	player.position = start_position.position
 	add_child(player)
+	player.position = start_position.position
 	player.captured.connect(_on_jumper_captured)
-	spawn_circle(start_position.position)
 
 
-func spawn_circle(_position: Vector2) -> void:
+func spawn_circle(_position: Vector2, _mode: Circle.MODE) -> void:
 	var circle: Circle = circle_scene.instantiate()
-	circle.position = _position
 	add_child(circle)
-	circle.init(circle.position)
+	circle.position = _position
+	circle.mode = _mode
 
 
 func _on_jumper_captured(target_area: Area2D) -> void:
@@ -52,4 +56,4 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 	var next_circle_x: int = randi_range(-150, 150)
 	var next_circle_y: int = randi_range(-500, -400)
 	var next_circle_position: Vector2 = target_circle.position + Vector2(next_circle_x, next_circle_y)
-	spawn_circle.call_deferred(next_circle_position)
+	spawn_circle.call_deferred(next_circle_position, Circle.MODE.LIMITED)
