@@ -82,6 +82,8 @@ func check_orbits() -> void:
 	if abs(pivot.rotation - orbit_start) >= 2 * PI:
 		orbits_left -= 1
 
+		AudioManager.play_sound("Beep")
+
 		if orbits_left <= 0:
 			jumper.die()
 			jumper = null

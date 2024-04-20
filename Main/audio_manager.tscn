@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://urd13q8dvop6"]
+
+[ext_resource type="Script" path="res://Main/audio_manager.gd" id="1_mf0qd"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_mf0qd")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="SoundPlayers" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="SoundPlayer_1" type="AudioStreamPlayer" parent="SoundPlayers"]
+bus = &"Sound"
+
+[node name="SoundPlayer_2" type="AudioStreamPlayer" parent="SoundPlayers"]
+bus = &"Sound"
+
+[node name="SoundPlayer_3" type="AudioStreamPlayer" parent="SoundPlayers"]
+bus = &"Sound"
+
+[node name="SoundPlayer_4" type="AudioStreamPlayer" parent="SoundPlayers"]
+bus = &"Sound"
+
+[node name="SoundPlayer_5" type="AudioStreamPlayer" parent="SoundPlayers"]
+bus = &"Sound"
+
+[connection signal="finished" from="MusicPlayer" to="." method="_on_music_player_finished"]

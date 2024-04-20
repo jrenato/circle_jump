@@ -34,6 +34,8 @@ func new_game() -> void:
 	hud.show_message("Go!")
 	score = 0
 	hud.update_score(score)
+	
+	AudioManager.play_music("LightPuzzle")
 
 
 func spawn_jumper() -> void:
@@ -77,3 +79,4 @@ func _on_jumper_died() -> void:
 	get_tree().call_group("circles", "implode")
 	hud.hide_hud()
 	screens.game_over()
+	AudioManager.stop_music()

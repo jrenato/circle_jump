@@ -10,13 +10,13 @@
 [node name="Label" parent="MarginContainer/VBoxContainer" index="0"]
 text = "Settings"
 
-[node name="SoundButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="0" groups=["buttons"]]
-layout_mode = 2
-texture_normal = ExtResource("2_jq21h")
-
-[node name="MusicButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="1" groups=["buttons"]]
+[node name="MusicButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="0" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("3_ii7qc")
+
+[node name="SoundButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="1" groups=["buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("2_jq21h")
 
 [node name="SettingsBackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons2" index="0" groups=["buttons"]]
 layout_mode = 2
