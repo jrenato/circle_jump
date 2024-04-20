@@ -42,9 +42,18 @@ func jump() -> void:
 	velocity = transform.x * jump_speed
 
 
+func die() -> void:
+	target = null
+	queue_free()
+
+
 func _on_area_entered(area: Area2D) -> void:
 	if area is Circle:
 		target = area as Circle
 		velocity = Vector2.ZERO
-		target.pivot.rotation = (position - target.position).angle()
 		captured.emit(area)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	if not target:
+		die()

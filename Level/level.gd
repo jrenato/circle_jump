@@ -46,7 +46,7 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 	camera.position = target_circle.position
 
 	# Animate the circle capture
-	target_circle.capture()
+	target_circle.capture(player)
 
 	# Spawn next circle
 	var next_circle_x: int = randi_range(-150, 150)
