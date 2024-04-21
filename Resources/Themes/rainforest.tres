@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ColorScheme" load_steps=2 format=3 uid="uid://hoohgi8w4y0y"]
+
+[ext_resource type="Script" path="res://Resources/color_scheme.gd" id="1_83q4m"]
+
+[resource]
+script = ExtResource("1_83q4m")
+name = "Rainforest"
+unlocked = true
+background = Color(0, 0.501961, 0, 1)
+player_body = Color(0, 1, 0, 1)
+player_trail = Color(1, 1, 1, 1)
+circle_fill = Color(0.823529, 0.411765, 0.117647, 1)
+circle_static = Color(1, 0.933333, 0.933333, 1)
+circle_limited = Color(0.823529, 0.411765, 0.117647, 1)

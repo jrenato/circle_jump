@@ -1,4 +1,0 @@
-resource_path,name,unlocked,background,player_body,player_trail,circle_fill,circle_static,circle_limited
-neon1,Neon1,Yes,000000ff,cbff00ff,cc00ffff,ff006eff,00ff66ff,cc00ffff
-neon2,Neon2,Yes,000000ff,f6ff00ff,ffffffff,ff006eff,97ff30ff,7f00ffff
-neon3,Neon3,Yes,000000ff,ff00bbff,ff9400ff,ff9400ff,aaff00ff,cc00ffff
