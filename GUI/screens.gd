@@ -33,6 +33,9 @@ func register_buttons() -> void:
 
 func change_screen(new_screen: BaseScreen) -> void:
 	if current_screen:
+		# We disable the buttons before the animation starts
+		# so that the player can't click while the animation is playing
+		get_tree().call_group("buttons", "set_disabled", true)
 		var disappear_tween: Tween = current_screen.disappear()
 		await(disappear_tween.finished)
 
@@ -40,6 +43,7 @@ func change_screen(new_screen: BaseScreen) -> void:
 		current_screen = new_screen
 		var appear_tween: Tween = current_screen.appear()
 		await(appear_tween.finished)
+		# Only after the screen is fully appeared can we enable the buttons
 		get_tree().call_group("buttons", "set_disabled", false)
 
 
