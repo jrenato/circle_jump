@@ -65,11 +65,20 @@ func spawn_circle(first_circle: bool = false) -> void:
 		circle.mode = circle.MODE.STATIC
 	else:
 		circle.position = jumper.target.position + Vector2(randi_range(-150, 150), randi_range(-500, -400))
-		circle.mode = circle.MODE.LIMITED
-		circle.move_speed = 1.0
-		circle.move_range = 100.0
-		circle.start_movement()
 
+		var modes: Array = [circle.MODE.STATIC, circle.MODE.LIMITED]
+		var weights: Array = [10, level-1]
+		circle.mode = modes[Settings.get_weighted_random(weights)]
+
+		var move_chance: float = clamp((level - 10), 0, 9) / 10.0
+		if randf() < move_chance:
+			circle.move_range = max(25, 100 * randf_range(0.75, 1.25) * move_chance) * pow(-1, randi() % 2)
+			circle.move_speed = max(2.5 - ceil(level/5.0) * 0.25, 0.75)
+			circle.start_movement()
+
+		var small_chance = min(0.9, max(0, (level-10) / 20.0))
+		if randf() < small_chance:
+			circle.radius = max(50, circle.radius - level * randf_range(0.75, 1.25))
 
 
 func _on_jumper_captured(target_area: Area2D) -> void:

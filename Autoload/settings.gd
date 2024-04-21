@@ -27,3 +27,18 @@ func _ready() -> void:
 					if theme_resource.default:
 						theme = theme_resource
 			file_name = theme_dir.get_next()
+
+
+func get_weighted_random(weights: Array) -> int:
+	var total_weight = 0
+	for weight in weights:
+		total_weight += weight
+
+	var random_number: float = randf_range(0, total_weight)
+
+	for i in range(weights.size()):
+		if random_number < weights[i]:
+			return i
+		random_number -= weights[i]
+
+	return 0
