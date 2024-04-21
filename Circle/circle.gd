@@ -31,11 +31,7 @@ var orbit_start: float = 0.0:
 var max_orbits: int = 3 # Number of orbits until the circle disappears
 var orbits_left: int = 0 # Number of orbits the jumper has completed
 
-var move_range: int = 0: # How far the circle can move. Zero means it won't move
-	set(value):
-		move_range = value
-		start_movement()
-
+var move_range: float = 0.0 # How far the circle can move. Zero means it won't move
 var move_speed: float = 1.0 # How fast the circle moves
 
 var points: int = 1
@@ -100,11 +96,11 @@ func start_movement() -> void:
 	if move_range == 0:
 		return
 
-	var move_tween: Tween = get_tree().create_tween().set_loops()
+	var move_tween: Tween = create_tween().set_loops()\
+		.set_trans(Tween.TRANS_QUAD)\
+		.set_ease(Tween.EASE_IN_OUT)
 	move_tween.tween_property(self, "position:x", position.x + move_range, move_speed)
 	move_tween.tween_property(self, "position:x", position.x, move_speed)
-	move_tween.set_trans(Tween.TRANS_QUAD)
-	move_tween.set_ease(Tween.EASE_IN_OUT)
 
 
 func check_orbits() -> void:
