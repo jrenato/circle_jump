@@ -3,8 +3,14 @@ extends Node2D
 @export var circle_scene: PackedScene
 @export var jumper_scene: PackedScene
 
+var score: int :
+	set(value):
+		score = value
+		update_score()
+
+var level: int
+
 var jumper: Jumper
-var score: int
 
 @onready var screens: CanvasLayer = %Screens
 @onready var hud: Control = %HUD
@@ -12,17 +18,11 @@ var score: int
 @onready var camera: Camera2D = %Camera2D
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
 	screens.start_game.connect(new_game)
 
 	hud.hide_hud()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func new_game() -> void:
@@ -33,9 +33,16 @@ func new_game() -> void:
 	hud.show_hud()
 	hud.show_message("Go!")
 	score = 0
-	hud.update_score(score)
-	
+	level = 1
+
 	AudioManager.play_music("LightPuzzle")
+
+
+func update_score() -> void:
+	hud.update_score(score)
+	if score > 0 and score % Settings.circles_per_level == 0:
+		level += 1
+		hud.show_message("Level %d" % level)
 
 
 func spawn_jumper() -> void:
