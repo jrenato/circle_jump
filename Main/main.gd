@@ -28,7 +28,7 @@ func _ready() -> void:
 func new_game() -> void:
 	camera.position = start_position.position
 	spawn_jumper()
-	spawn_circle(start_position.position, Circle.MODE.STATIC, true)
+	spawn_circle(start_position.position, 100, Circle.MODE.STATIC, true)
 
 	hud.show_hud()
 	hud.show_message("Go!")
@@ -53,11 +53,14 @@ func spawn_jumper() -> void:
 	jumper.died.connect(_on_jumper_died)
 
 
-func spawn_circle(_position: Vector2, _mode: Circle.MODE, disable_points: bool = false) -> void:
+func spawn_circle(_position: Vector2, _radius: int, _mode: Circle.MODE, _move_speed: float = 0.0, _move_range: int = 0, disable_points: bool = false) -> void:
 	var circle: Circle = circle_scene.instantiate()
 	add_child(circle)
 	circle.position = _position
+	circle.radius = _radius
 	circle.mode = _mode
+	circle.move_speed = _move_speed
+	circle.move_range = _move_range
 
 	if disable_points:
 		circle.points = 0
@@ -79,7 +82,7 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 	var next_circle_x: int = randi_range(-150, 150)
 	var next_circle_y: int = randi_range(-500, -400)
 	var next_circle_position: Vector2 = target_circle.position + Vector2(next_circle_x, next_circle_y)
-	spawn_circle.call_deferred(next_circle_position, Circle.MODE.LIMITED)
+	spawn_circle.call_deferred(next_circle_position, 100, Circle.MODE.LIMITED, 0.0, 0)
 
 
 func _on_jumper_died() -> void:

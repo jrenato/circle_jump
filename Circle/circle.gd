@@ -22,7 +22,7 @@ var rotation_speed: float = PI:
 		else:
 			orbit_progress_bar.fill_mode = TextureProgressBar.FillMode.FILL_COUNTER_CLOCKWISE
 
- # The angle where the orbit started
+# The angle where the orbit started
 var orbit_start: float = 0.0:
 	set(value):
 		orbit_start = value
@@ -30,6 +30,13 @@ var orbit_start: float = 0.0:
 
 var max_orbits: int = 3 # Number of orbits until the circle disappears
 var orbits_left: int = 0 # Number of orbits the jumper has completed
+
+var move_range: int = 0: # How far the circle can move. Zero means it won't move
+	set(value):
+		move_range = value
+		start_movement()
+
+var move_speed: float = 1.0 # How fast the circle moves
 
 var points: int = 1
 
@@ -45,12 +52,13 @@ var points: int = 1
 
 func _ready() -> void:
 	sprite_effect.visible = false
-	radius = 100
 
+	# Update the theme
 	sprite.material = sprite.material.duplicate()
 	sprite_effect.material = sprite.material
 	orbit_progress_bar.tint_progress = Settings.theme["circle_fill"]
 
+	# Randomize the orbit direction
 	rotation_speed *= pow(-1, randi() % 2)
 
 
@@ -86,6 +94,17 @@ func update_mode() -> void:
 			color = Settings.theme["circle_limited"]
 	sprite.material.set_shader_parameter("color", color)
 	sprite_effect.material.set_shader_parameter("color", color)
+
+
+func start_movement() -> void:
+	if move_range == 0:
+		return
+
+	var move_tween: Tween = get_tree().create_tween().set_loops()
+	move_tween.tween_property(self, "position:x", position.x + move_range, move_speed)
+	move_tween.tween_property(self, "position:x", position.x, move_speed)
+	move_tween.set_trans(Tween.TRANS_QUAD)
+	move_tween.set_ease(Tween.EASE_IN_OUT)
 
 
 func check_orbits() -> void:
