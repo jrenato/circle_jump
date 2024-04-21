@@ -9,10 +9,12 @@ var target: Circle = null
 var trail_length: int = 25
 
 @onready var trail = %Points
+@onready var sprite: Sprite2D = %Sprite2D
 
 
 func _ready() -> void:
-	pass
+	sprite.material.set_shader_parameter("color", Settings.theme["player_body"])
+	trail.gradient.set_color(1, Settings.theme["player_trail"])
 
 
 func _process(delta) -> void:

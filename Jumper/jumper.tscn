@@ -18,6 +18,7 @@ script = ExtResource("1_lxmx5")
 polygon = PackedVector2Array(-20, -20, 21, 0, -21, 21)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_ypoxg")
 rotation = 1.5708
 texture = ExtResource("1_e32ii")

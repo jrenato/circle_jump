@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ColorScheme" load_steps=2 format=3 uid="uid://dxcl2s2mk5iwu"]
+
+[ext_resource type="Script" path="res://Resources/color_scheme.gd" id="1_mumxx"]
+
+[resource]
+script = ExtResource("1_mumxx")
+background = Color(0, 0, 0, 1)
+player_body = Color(0.796078, 1, 0, 1)
+player_trail = Color(0.8, 0, 1, 1)
+circle_fill = Color(1, 0, 0.431373, 1)
+circle_static = Color(0, 1, 0.4, 1)
+circle_limited = Color(0.8, 0, 1, 1)

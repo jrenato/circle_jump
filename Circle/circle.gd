@@ -47,6 +47,10 @@ func _ready() -> void:
 	sprite_effect.visible = false
 	radius = 100
 
+	sprite.material = sprite.material.duplicate()
+	sprite_effect.material = sprite.material
+	orbit_progress_bar.tint_progress = Settings.theme["circle_fill"]
+
 	rotation_speed *= pow(-1, randi() % 2)
 
 
@@ -67,15 +71,21 @@ func update_radius() -> void:
 
 
 func update_mode() -> void:
+	var color: Color
+
 	match mode:
 		MODE.STATIC:
 			orbits_label.hide()
 			orbit_progress_bar.hide()
+			color = Settings.theme["circle_static"]
 		MODE.LIMITED:
 			orbits_left = max_orbits
 			orbits_label.text = str(orbits_left)
 			orbits_label.show()
 			orbit_progress_bar.hide()
+			color = Settings.theme["circle_limited"]
+	sprite.material.set_shader_parameter("color", color)
+	sprite_effect.material.set_shader_parameter("color", color)
 
 
 func check_orbits() -> void:

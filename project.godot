@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManager="*res://Main/audio_manager.tscn"
+Settings="*res://Autoload/settings.gd"
 
 [debug]
 
