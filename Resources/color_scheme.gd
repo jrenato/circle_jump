@@ -1,6 +1,7 @@
 class_name ColorScheme extends Resource
 
 @export var name: String
+@export var default: bool = false
 @export var unlocked: bool = false
 @export var background: Color
 @export var player_body: Color

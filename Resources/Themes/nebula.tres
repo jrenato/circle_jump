@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_ne8ei")
 name = "Nebula"
+default = false
 unlocked = true
 background = Color(0, 0, 0, 1)
 player_body = Color(1, 1, 1, 1)

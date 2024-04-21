@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_83q4m")
 name = "Rainforest"
+default = false
 unlocked = true
 background = Color(0, 0.501961, 0, 1)
 player_body = Color(0, 1, 0, 1)

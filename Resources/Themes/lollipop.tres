@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_2h7w4")
 name = "Lollipop"
+default = false
 unlocked = true
 background = Color(1, 1, 1, 1)
 player_body = Color(1, 0.6, 0.8, 1)

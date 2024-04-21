@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_ei5dc")
 name = "Castle"
+default = false
 unlocked = true
 background = Color(1, 0.933333, 0.933333, 1)
 player_body = Color(1, 0.8, 0.6, 1)
