@@ -58,6 +58,25 @@ func _ready() -> void:
 	rotation_speed *= pow(-1, randi() % 2)
 
 
+func init_circle(circle_position: Vector2, level: int) -> void:
+	position = circle_position
+	radius = 100
+
+	var modes: Array = [MODE.STATIC, MODE.LIMITED]
+	var weights: Array = [10, level-1]
+	mode = modes[Settings.get_weighted_random(weights)]
+
+	var move_chance: float = clamp((level - 10), 0, 9) / 10.0
+	if randf() < move_chance:
+		move_range = max(25, 100 * randf_range(0.75, 1.25) * move_chance) * pow(-1, randi() % 2)
+		move_speed = max(2.5 - ceil(level/5.0) * 0.25, 0.75)
+		start_movement()
+
+	var small_chance = min(0.9, max(0, (level-10) / 20.0))
+	if randf() < small_chance:
+		radius = max(50, radius - level * randf_range(0.75, 1.25))
+
+
 func _process(delta: float) -> void:
 	pivot.rotation += rotation_speed * delta
 	if mode == MODE.LIMITED and jumper:

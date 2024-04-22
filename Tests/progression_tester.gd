@@ -37,15 +37,18 @@ func spawn_circle(_position=null):
 		var y = randi_range(-500, -400)
 		_position = last_circle_position + Vector2(x, y)
 	add_child(c)
-	c.init(_position, level)
+	c.init_circle(_position, level)
 	last_circle_position = _position
 
 
 func _draw():
-	var l = 1
+	var level_string: int = 1
 	for pos in level_markers:
-		var s = Vector2(pos.x-480, pos.y-200)
-		var e = Vector2(pos.x-80, pos.y-200)
-		draw_line(s, e, Color(1, 1, 1), 15)
-		#draw_string(font, s - Vector2(0, 50), str(l), Color(1, 1, 1))
-		l += 1
+		var start_position = Vector2(pos.x-480, pos.y-200)
+		var end_position = Vector2(pos.x-80, pos.y-200)
+		draw_line(start_position, end_position, Color(1, 1, 1), 15)
+		draw_string(
+			font, start_position - Vector2(0, 50), str(level_string),
+			HORIZONTAL_ALIGNMENT_LEFT, -1, 64
+		)
+		level_string += 1

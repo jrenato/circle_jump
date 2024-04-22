@@ -8,9 +8,8 @@ var score: int :
 		score = value
 		update_score()
 
-var level: int
-
 var jumper: Jumper
+var level: int = 1
 
 @onready var screens: CanvasLayer = %Screens
 @onready var hud: Control = %HUD
@@ -28,7 +27,7 @@ func _ready() -> void:
 func new_game() -> void:
 	camera.position = start_position.position
 	spawn_jumper()
-	spawn_circle.call_deferred(true)
+	spawn_circle.call_deferred(start_position.position)
 
 	hud.show_hud()
 	hud.show_message("Go!")
@@ -53,32 +52,17 @@ func spawn_jumper() -> void:
 	jumper.died.connect(_on_jumper_died)
 
 
-func spawn_circle(first_circle: bool = false) -> void:
+func spawn_circle(circle_position: Variant = null, disable_points: bool = false) -> void:
 	var circle: Circle = circle_scene.instantiate()
 	add_child(circle)
 
-	circle.radius = 100
-
-	if first_circle:
+	if disable_points:
 		circle.points = 0
-		circle.position = start_position.position
-		circle.mode = circle.MODE.STATIC
-	else:
-		circle.position = jumper.target.position + Vector2(randi_range(-150, 150), randi_range(-500, -400))
 
-		var modes: Array = [circle.MODE.STATIC, circle.MODE.LIMITED]
-		var weights: Array = [10, level-1]
-		circle.mode = modes[Settings.get_weighted_random(weights)]
+	if not circle_position:
+		circle_position = jumper.target.position + Vector2(randi_range(-150, 150), randi_range(-500, -400))
 
-		var move_chance: float = clamp((level - 10), 0, 9) / 10.0
-		if randf() < move_chance:
-			circle.move_range = max(25, 100 * randf_range(0.75, 1.25) * move_chance) * pow(-1, randi() % 2)
-			circle.move_speed = max(2.5 - ceil(level/5.0) * 0.25, 0.75)
-			circle.start_movement()
-
-		var small_chance = min(0.9, max(0, (level-10) / 20.0))
-		if randf() < small_chance:
-			circle.radius = max(50, circle.radius - level * randf_range(0.75, 1.25))
+	circle.init_circle(circle_position)
 
 
 func _on_jumper_captured(target_area: Area2D) -> void:
