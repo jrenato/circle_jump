@@ -27,7 +27,8 @@ jumper_scene = ExtResource("3_42k7g")
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="Background"]
+[node name="BackgroundRect" type="ColorRect" parent="Background"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

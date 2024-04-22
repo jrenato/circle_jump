@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_4t0d1")
 name = "Neon3"
+default = false
 unlocked = true
 background = Color(0, 0, 0, 1)
 player_body = Color(1, 0, 0.733333, 1)

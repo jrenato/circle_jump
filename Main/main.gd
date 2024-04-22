@@ -15,6 +15,7 @@ var level: int = 1
 @onready var hud: Control = %HUD
 @onready var start_position: Marker2D = %StartPosition
 @onready var camera: Camera2D = %Camera2D
+@onready var background_rect: ColorRect = %BackgroundRect
 
 
 func _ready() -> void:
@@ -22,6 +23,8 @@ func _ready() -> void:
 	screens.start_game.connect(new_game)
 
 	hud.hide_hud()
+
+	background_rect.color = Settings.theme["background"]
 
 
 func new_game() -> void:
