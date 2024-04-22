@@ -11,7 +11,7 @@ func _ready():
 	randomize()
 	last_circle_position = $Camera2D.position
 	level = 0
-	for i in 100:
+	for i in 150:
 		if i % 5 == 0:
 			level += 1
 			level_markers.append(last_circle_position)

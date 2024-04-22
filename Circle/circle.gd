@@ -62,6 +62,8 @@ func init_circle(circle_position: Vector2, level: int) -> void:
 	position = circle_position
 	radius = 100
 
+	level = level * 3
+
 	var modes: Array = [MODE.STATIC, MODE.LIMITED]
 	var weights: Array = [10, level-1]
 	mode = modes[Settings.get_weighted_random(weights)]
