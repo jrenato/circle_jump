@@ -27,7 +27,7 @@ func _ready() -> void:
 func new_game() -> void:
 	camera.position = start_position.position
 	spawn_jumper()
-	spawn_circle.call_deferred(start_position.position)
+	spawn_circle.call_deferred(start_position.position, true)
 
 	hud.show_hud()
 	hud.show_message("Go!")
@@ -62,7 +62,7 @@ func spawn_circle(circle_position: Variant = null, disable_points: bool = false)
 	if not circle_position:
 		circle_position = jumper.target.position + Vector2(randi_range(-150, 150), randi_range(-500, -400))
 
-	circle.init_circle(circle_position, level)
+	circle.init_circle(circle_position, level, disable_points)
 
 
 func _on_jumper_captured(target_area: Area2D) -> void:
