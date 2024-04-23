@@ -62,7 +62,7 @@ func _on_button_pressed(button: TextureButton) -> void:
 			get_tree().quit()
 
 		# Settings Screen
-		"SettingsBackButton":
+		"BackButton":
 			change_screen(title_screen)
 		"MusicButton":
 			AudioManager.set_music_enabled(!AudioManager.is_music_enabled())
@@ -74,7 +74,7 @@ func _on_button_pressed(button: TextureButton) -> void:
 		# Game Over Screen
 		"HomeButton":
 			change_screen(title_screen)
-		"GameOverRetryButton":
+		"RetryButton":
 			change_screen(null)
 			await(get_tree().create_timer(fadeout_duration).timeout)
 			start_game.emit()

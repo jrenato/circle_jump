@@ -1,18 +1,59 @@
-[gd_scene load_steps=4 format=3 uid="uid://ce07l7d28evu2"]
+[gd_scene load_steps=6 format=3 uid="uid://dmx26yj88sgun"]
 
-[ext_resource type="PackedScene" uid="uid://wkrtdtagpjo0" path="res://GUI/base_screen.tscn" id="1_7uknh"]
+[ext_resource type="Script" path="res://GUI/base_screen.gd" id="1_orav4"]
 [ext_resource type="Texture2D" uid="uid://d36qi2gqegp3l" path="res://Assets/Images/buttons/home.png" id="2_ii8qj"]
+[ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="2_s1d1e"]
 [ext_resource type="Texture2D" uid="uid://b273l7x3utu5i" path="res://Assets/Images/buttons/return.png" id="3_g53pv"]
 
-[node name="GameOverScreen" instance=ExtResource("1_7uknh")]
+[sub_resource type="LabelSettings" id="LabelSettings_tp6g6"]
+font = ExtResource("2_s1d1e")
+font_size = 64
 
-[node name="Label" parent="MarginContainer/VBoxContainer" index="0"]
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 500.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_orav4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 text = "Game Over"
+label_settings = SubResource("LabelSettings_tp6g6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="0" groups=["buttons"]]
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("2_ii8qj")
 
-[node name="GameOverRetryButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="1" groups=["buttons"]]
+[node name="RetryButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("3_g53pv")

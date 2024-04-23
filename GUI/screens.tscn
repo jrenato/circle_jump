@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://GUI/screens.gd" id="1_408sc"]
 [ext_resource type="PackedScene" uid="uid://b6dtin1fpqpjg" path="res://GUI/title_screen.tscn" id="1_jlr0e"]
-[ext_resource type="PackedScene" uid="uid://y10oo7cyr6jj" path="res://GUI/settings_screen.tscn" id="2_hs13f"]
-[ext_resource type="PackedScene" uid="uid://ce07l7d28evu2" path="res://GUI/game_over_screen.tscn" id="3_1rdmp"]
+[ext_resource type="PackedScene" uid="uid://iiv6u34hcmsv" path="res://GUI/settings_screen.tscn" id="2_hs13f"]
+[ext_resource type="PackedScene" uid="uid://dmx26yj88sgun" path="res://GUI/game_over_screen.tscn" id="3_1rdmp"]
 
 [node name="Screens" type="CanvasLayer"]
 script = ExtResource("1_408sc")

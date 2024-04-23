@@ -1,23 +1,69 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6dtin1fpqpjg"]
+[gd_scene load_steps=7 format=3 uid="uid://b6dtin1fpqpjg"]
 
-[ext_resource type="PackedScene" uid="uid://wkrtdtagpjo0" path="res://GUI/base_screen.tscn" id="1_5rcrs"]
+[ext_resource type="Script" path="res://GUI/base_screen.gd" id="1_hp6yv"]
+[ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="2_5kwju"]
 [ext_resource type="Texture2D" uid="uid://knwnsdsrgkth" path="res://Assets/Images/buttons/right.png" id="2_45nw1"]
 [ext_resource type="Texture2D" uid="uid://uqblc7nub1pa" path="res://Assets/Images/buttons/gear.png" id="3_7kdb6"]
 [ext_resource type="Texture2D" uid="uid://b273l7x3utu5i" path="res://Assets/Images/buttons/return.png" id="4_7y81a"]
 
-[node name="TitleScreen" instance=ExtResource("1_5rcrs")]
+[sub_resource type="LabelSettings" id="LabelSettings_tp6g6"]
+font = ExtResource("2_5kwju")
+font_size = 64
 
-[node name="Label" parent="MarginContainer/VBoxContainer" index="0"]
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 500.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hp6yv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 text = "Circle Jump"
+label_settings = SubResource("LabelSettings_tp6g6")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="PlayButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="0" groups=["buttons"]]
+[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="PlayButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("2_45nw1")
 
-[node name="SettingsButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" index="1" groups=["buttons"]]
+[node name="SettingsButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("3_7kdb6")
 
-[node name="QuitButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons2" index="0" groups=["buttons"]]
+[node name="Buttons2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="QuitButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons2" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("4_7y81a")
