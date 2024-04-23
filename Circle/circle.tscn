@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cj7a4lchc8gh8"]
+[gd_scene load_steps=13 format=3 uid="uid://cj7a4lchc8gh8"]
 
 [ext_resource type="Script" path="res://Circle/circle.gd" id="1_1qqjh"]
 [ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_g1c4m"]
@@ -11,6 +11,14 @@ radius = 134.034
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifdf6"]
 shader = ExtResource("1_g1c4m")
 shader_parameter/color = Color(0.00729171, 0, 0.910716, 1)
+shader_parameter/glow_color = Color(0.2, 0.6, 0.3, 1)
+shader_parameter/glow_power = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_elmqu"]
+shader = ExtResource("1_g1c4m")
+shader_parameter/color = Color(0.00729171, 0, 0.910716, 1)
+shader_parameter/glow_color = Color(0.2, 0.6, 0.3, 1)
+shader_parameter/glow_power = 2.0
 
 [sub_resource type="Animation" id="Animation_0apxe"]
 length = 0.001
@@ -170,7 +178,7 @@ texture = ExtResource("1_mknme")
 [node name="SpriteEffect" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
-material = SubResource("ShaderMaterial_ifdf6")
+material = SubResource("ShaderMaterial_elmqu")
 texture = ExtResource("1_mknme")
 
 [node name="Pivot" type="Node2D" parent="."]

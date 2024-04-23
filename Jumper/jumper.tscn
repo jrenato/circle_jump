@@ -7,6 +7,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ypoxg"]
 shader = ExtResource("2_hkoh7")
 shader_parameter/color = Color(0, 0.8, 0.407843, 1)
+shader_parameter/glow_color = Color(0.2, 0.6, 0.3, 1)
+shader_parameter/glow_power = 2.0
 
 [sub_resource type="Gradient" id="Gradient_t8f82"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 0.654902, 0, 1)
