@@ -1,14 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6dtin1fpqpjg"]
+[gd_scene load_steps=12 format=3 uid="uid://b6dtin1fpqpjg"]
 
 [ext_resource type="Script" path="res://GUI/base_screen.gd" id="1_hp6yv"]
 [ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="2_5kwju"]
 [ext_resource type="Texture2D" uid="uid://knwnsdsrgkth" path="res://Assets/Images/buttons/right.png" id="2_45nw1"]
 [ext_resource type="Texture2D" uid="uid://uqblc7nub1pa" path="res://Assets/Images/buttons/gear.png" id="3_7kdb6"]
-[ext_resource type="Texture2D" uid="uid://b273l7x3utu5i" path="res://Assets/Images/buttons/return.png" id="4_7y81a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tp6g6"]
 font = ExtResource("2_5kwju")
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_f0b48"]
+font = ExtResource("2_5kwju")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xv8ry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5uhyx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21fqj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mctxr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mb7vj"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -37,9 +49,9 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 150
+theme_override_constants/separation = 120
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Circle Jump"
 label_settings = SubResource("LabelSettings_tp6g6")
@@ -55,15 +67,56 @@ alignment = 1
 layout_mode = 2
 texture_normal = ExtResource("2_45nw1")
 
+[node name="PlayLabel" type="Label" parent="MarginContainer/VBoxContainer/Buttons/PlayButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Start"
+label_settings = SubResource("LabelSettings_f0b48")
+horizontal_alignment = 1
+
 [node name="SettingsButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("3_7kdb6")
 
-[node name="Buttons2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 75
-alignment = 1
+[node name="SettingsLabel" type="Label" parent="MarginContainer/VBoxContainer/Buttons/SettingsButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Settings"
+label_settings = SubResource("LabelSettings_f0b48")
+horizontal_alignment = 1
 
-[node name="QuitButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons2" groups=["buttons"]]
+[node name="AboutButton" type="Button" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
 layout_mode = 2
-texture_normal = ExtResource("4_7y81a")
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_5kwju")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xv8ry")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5uhyx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21fqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mctxr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mb7vj")
+text = "About"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_5kwju")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xv8ry")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5uhyx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_21fqj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mctxr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mb7vj")
+text = "Quit"

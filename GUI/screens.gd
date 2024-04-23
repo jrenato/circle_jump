@@ -27,16 +27,20 @@ func _ready() -> void:
 func register_buttons() -> void:
 	var buttons: Array[Node] = get_tree().get_nodes_in_group("buttons")
 	for button in buttons:
-		if button is TextureButton:
+		if button is BaseButton:
 			button.pressed.connect(_on_button_pressed.bind(button))
+
 		match button.name:
 			"AdsButton":
 				# TODO: Implement ads
 				pass
 			"MusicButton":
 				button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
+				settings_screen.music_label.text = "Music " + ("On" if AudioManager.is_music_enabled() else "Off")
+					
 			"SoundButton":
 				button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
+				settings_screen.sound_label.text = "Sound " + ("On" if AudioManager.is_sound_enabled() else "Off")
 
 
 func change_screen(new_screen: BaseScreen) -> void:
@@ -55,7 +59,7 @@ func change_screen(new_screen: BaseScreen) -> void:
 		get_tree().call_group("buttons", "set_disabled", false)
 
 
-func _on_button_pressed(button: TextureButton) -> void:
+func _on_button_pressed(button: BaseButton) -> void:
 	AudioManager.play_sound("Click")
 
 	match button.name:
@@ -75,14 +79,19 @@ func _on_button_pressed(button: TextureButton) -> void:
 		"MusicButton":
 			AudioManager.set_music_enabled(!AudioManager.is_music_enabled())
 			button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
+			settings_screen.music_label.text = "Music " + ("On" if AudioManager.is_music_enabled() else "Off")
 			Settings.save_settings()
 		"SoundButton":
 			AudioManager.set_sound_enabled(!AudioManager.is_sound_enabled())
 			button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
+			settings_screen.sound_label.text = "Sound " + ("On" if AudioManager.is_sound_enabled() else "Off")
 			Settings.save_settings()
 		"AdsButton":
 			# TODO: Implement ads
-			pass
+			if button.text == "Disable Ads":
+				button.text = "Enable Ads"
+			else:
+				button.text = "Disable Ads"
 
 		# Game Over Screen
 		"HomeButton":

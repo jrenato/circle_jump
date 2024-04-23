@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://iiv6u34hcmsv"]
+[gd_scene load_steps=13 format=3 uid="uid://iiv6u34hcmsv"]
 
 [ext_resource type="Script" path="res://GUI/base_screen.gd" id="1_vdjwt"]
 [ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="2_e8fij"]
@@ -10,7 +10,20 @@
 font = ExtResource("2_e8fij")
 font_size = 64
 
-[node name="SettingsScreen" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_roocj"]
+font = ExtResource("2_e8fij")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8j85r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_baaxx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gqg5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v01tx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_je2cb"]
+
+[node name="SettingsScreen" type="Control" node_paths=PackedStringArray("music_label", "sound_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,6 +33,8 @@ offset_right = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vdjwt")
+music_label = NodePath("MarginContainer/VBoxContainer/Buttons/MusicButton/MusicLabel")
+sound_label = NodePath("MarginContainer/VBoxContainer/Buttons/SoundButton/SoundLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -37,7 +52,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 150
+theme_override_constants/separation = 120
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -55,15 +70,63 @@ alignment = 1
 layout_mode = 2
 texture_normal = ExtResource("3_ii7qc")
 
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/Buttons/MusicButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Music On"
+label_settings = SubResource("LabelSettings_roocj")
+horizontal_alignment = 1
+
 [node name="SoundButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("2_jq21h")
 
-[node name="Buttons2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 75
-alignment = 1
+[node name="SoundLabel" type="Label" parent="MarginContainer/VBoxContainer/Buttons/SoundButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Sound On"
+label_settings = SubResource("LabelSettings_roocj")
+horizontal_alignment = 1
 
-[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons2" groups=["buttons"]]
+[node name="AdsButton" type="Button" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
 layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_e8fij")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8j85r")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_baaxx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_3gqg5")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_v01tx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_je2cb")
+disabled = true
+text = "Disable Ads"
+
+[node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
+layout_mode = 2
+size_flags_horizontal = 4
 texture_normal = ExtResource("4_8dsq1")
+
+[node name="BackLabel" type="Label" parent="MarginContainer/VBoxContainer/BackButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return"
+label_settings = SubResource("LabelSettings_roocj")
+horizontal_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmx26yj88sgun"]
+[gd_scene load_steps=8 format=3 uid="uid://dmx26yj88sgun"]
 
 [ext_resource type="Script" path="res://GUI/base_screen.gd" id="1_orav4"]
 [ext_resource type="Texture2D" uid="uid://d36qi2gqegp3l" path="res://Assets/Images/buttons/home.png" id="2_ii8qj"]
@@ -12,6 +12,9 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_vehux"]
 font = ExtResource("2_s1d1e")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_qrof7"]
+font = ExtResource("2_s1d1e")
 
 [node name="GameOverScreen" type="Control" node_paths=PackedStringArray("score_label", "highscore_label")]
 layout_mode = 3
@@ -75,6 +78,32 @@ alignment = 1
 layout_mode = 2
 texture_normal = ExtResource("2_ii8qj")
 
+[node name="HomeLabel" type="Label" parent="MarginContainer/VBoxContainer/Buttons/HomeButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Home"
+label_settings = SubResource("LabelSettings_qrof7")
+horizontal_alignment = 1
+
 [node name="RetryButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("3_g53pv")
+
+[node name="RetryLabel" type="Label" parent="MarginContainer/VBoxContainer/Buttons/RetryButton"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Retry"
+label_settings = SubResource("LabelSettings_qrof7")
+horizontal_alignment = 1
