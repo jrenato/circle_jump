@@ -1,5 +1,8 @@
 class_name BaseScreen extends Control
 
+@export var score_label: Label
+@export var highscore_label: Label
+
 var fadeout_duration: float = 0.5
 
 

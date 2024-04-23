@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmx26yj88sgun"]
+[gd_scene load_steps=7 format=3 uid="uid://dmx26yj88sgun"]
 
 [ext_resource type="Script" path="res://GUI/base_screen.gd" id="1_orav4"]
 [ext_resource type="Texture2D" uid="uid://d36qi2gqegp3l" path="res://Assets/Images/buttons/home.png" id="2_ii8qj"]
@@ -9,7 +9,11 @@
 font = ExtResource("2_s1d1e")
 font_size = 64
 
-[node name="GameOverScreen" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_vehux"]
+font = ExtResource("2_s1d1e")
+font_size = 32
+
+[node name="GameOverScreen" type="Control" node_paths=PackedStringArray("score_label", "highscore_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,6 +23,8 @@ offset_right = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_orav4")
+score_label = NodePath("MarginContainer/VBoxContainer/LabelsContainer/ScoreLabel")
+highscore_label = NodePath("MarginContainer/VBoxContainer/LabelsContainer/HighScoreLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -44,6 +50,21 @@ text = "Game Over"
 label_settings = SubResource("LabelSettings_tp6g6")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LabelsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/LabelsContainer"]
+layout_mode = 2
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_vehux")
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/LabelsContainer"]
+layout_mode = 2
+text = "Best: 0"
+label_settings = SubResource("LabelSettings_vehux")
+horizontal_alignment = 1
 
 [node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

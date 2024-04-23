@@ -87,5 +87,11 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 func _on_jumper_died() -> void:
 	get_tree().call_group("circles", "implode")
 	hud.hide_hud()
-	screens.game_over()
+
+	if score > Settings.high_score:
+		Settings.high_score = score
+		Settings.save_game_data()
+
+	screens.game_over(score, Settings.high_score)
+
 	AudioManager.stop_music()

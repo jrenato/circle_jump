@@ -80,6 +80,11 @@ func _on_button_pressed(button: TextureButton) -> void:
 			start_game.emit()
 
 
-func game_over() -> void:
+func game_over(score: int, high_score: int) -> void:
 	change_screen(game_over_screen)
 
+	# Update the score and highscore
+	if game_over_screen.score_label:
+		game_over_screen.score_label.text = "Score: %d" % score
+	if game_over_screen.highscore_label:
+		game_over_screen.highscore_label.text = "Best: %d" % high_score
