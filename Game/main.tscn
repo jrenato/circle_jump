@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://klhics3c6r1a" path="res://Game/Jumper/jumper.tscn" id="3_42k7g"]
 [ext_resource type="Texture2D" uid="uid://d2cyw3pwjae06" path="res://Assets/Images/circle_1.png" id="4_mxg8y"]
 [ext_resource type="PackedScene" uid="uid://g5cp30neerml" path="res://GUI/screens.tscn" id="4_vdj2v"]
-[ext_resource type="PackedScene" uid="uid://b4ackxvfw2y11" path="res://GUI/hud.tscn" id="5_5dfxc"]
+[ext_resource type="PackedScene" uid="uid://b4ackxvfw2y11" path="res://GUI/HUD/hud.tscn" id="5_5dfxc"]
 
 [sub_resource type="Curve" id="Curve_4ttu3"]
 min_value = -1.0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b4ackxvfw2y11"]
 
 [ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="1_jrovp"]
-[ext_resource type="Script" path="res://GUI/hud.gd" id="1_l8by6"]
+[ext_resource type="Script" path="res://GUI/HUD/hud.gd" id="1_l8by6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_l2qto"]
 font = ExtResource("1_jrovp")

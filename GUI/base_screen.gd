@@ -28,3 +28,7 @@ func disappear() -> Tween:
 		.set_trans(Tween.TRANS_BACK)\
 		.set_ease(Tween.EASE_IN_OUT)
 	return tween
+
+
+func _on_about_rich_text_label_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(meta)

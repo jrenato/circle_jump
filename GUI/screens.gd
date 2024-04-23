@@ -17,6 +17,7 @@ var current_screen: BaseScreen = null
 @onready var title_screen: BaseScreen = %TitleScreen
 @onready var settings_screen: BaseScreen = %SettingsScreen
 @onready var game_over_screen: BaseScreen = %GameOverScreen
+@onready var about_screen: BaseScreen = %AboutScreen
 
 
 func _ready() -> void:
@@ -70,6 +71,8 @@ func _on_button_pressed(button: BaseButton) -> void:
 			start_game.emit()
 		"SettingsButton":
 			change_screen(settings_screen)
+		"AboutButton":
+			change_screen(about_screen)
 		"QuitButton":
 			get_tree().quit()
 
