@@ -1,6 +1,7 @@
 extends Node
 
-var game_data_location: String = "user://gamedata.save"
+var highscore_location: String = "user://highscore.dat"
+var settings_location: String = "user://settings.dat"
 var themes_location: String = "res://Resources/Themes/"
 var color_schemes: Dictionary
 
@@ -15,12 +16,12 @@ var theme_name: String:
 
 
 func _ready() -> void:
-	load_themes()
-	load_game_data()
-	
+	load_themes() # Iterate through files in theme directory and load them as color schemes
+	load_high_score()
+	load_settings()
+
 
 func load_themes() -> void:
-	# Iterate through files in theme directory and load them as color schemes
 	var theme_dir = DirAccess.open(themes_location)
 
 	if theme_dir:
@@ -52,21 +53,40 @@ func get_weighted_random(weights: Array) -> int:
 	return 0
 
 
-func save_game_data() -> void:
-	var game_data: Dictionary = {
-		"high_score": high_score, 
-		"theme_name": theme_name
+func save_high_score() -> void:
+	var high_score_file = FileAccess.open(highscore_location, FileAccess.WRITE)
+	high_score_file.store_line(str(high_score))
+
+
+func load_high_score() -> void:
+	var high_score_file = FileAccess.open(highscore_location, FileAccess.READ)
+	if high_score_file:
+		high_score = high_score_file.get_line().to_int()
+	else:
+		high_score = 0
+
+
+func save_settings() -> void:
+	var settings_file = FileAccess.open(settings_location, FileAccess.WRITE)
+	var settings_dict: Dictionary = {
+		"theme_name": theme_name,
+		"music_enabled": AudioManager.is_music_enabled(),
+		"sound_enabled": AudioManager.is_sound_enabled(),
+		"enable_ads": false # TODO: Implement ads
 	}
 
-	var save_game = FileAccess.open(game_data_location, FileAccess.WRITE)
-	var json_string = JSON.stringify(game_data)
-	save_game.store_line(json_string)
+	var json_string = JSON.stringify(settings_dict)
+	settings_file.store_string(json_string)
 
 
-func load_game_data() -> void:
-	var save_game = FileAccess.open(game_data_location, FileAccess.READ)
-	var json_string = save_game.get_line()
-	var game_data = JSON.parse_string(json_string)
-	
-	high_score = game_data.get("high_score")
-	theme_name = game_data.get("theme_name")
+func load_settings() -> void:
+	var settings_file = FileAccess.open(settings_location, FileAccess.READ)
+	if not settings_file:
+		return
+
+	var settings_dict = JSON.parse_string(settings_file.get_as_text())
+
+	theme_name = settings_dict["theme_name"]
+	AudioManager.set_music_enabled(settings_dict["music_enabled"])
+	AudioManager.set_sound_enabled(settings_dict["sound_enabled"])
+	# TODO: Implement ads

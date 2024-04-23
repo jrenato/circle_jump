@@ -29,6 +29,14 @@ func register_buttons() -> void:
 	for button in buttons:
 		if button is TextureButton:
 			button.pressed.connect(_on_button_pressed.bind(button))
+		match button.name:
+			"AdsButton":
+				# TODO: Implement ads
+				pass
+			"MusicButton":
+				button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
+			"SoundButton":
+				button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
 
 
 func change_screen(new_screen: BaseScreen) -> void:
@@ -67,9 +75,14 @@ func _on_button_pressed(button: TextureButton) -> void:
 		"MusicButton":
 			AudioManager.set_music_enabled(!AudioManager.is_music_enabled())
 			button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
+			Settings.save_settings()
 		"SoundButton":
 			AudioManager.set_sound_enabled(!AudioManager.is_sound_enabled())
 			button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
+			Settings.save_settings()
+		"AdsButton":
+			# TODO: Implement ads
+			pass
 
 		# Game Over Screen
 		"HomeButton":

@@ -90,7 +90,7 @@ func _on_jumper_died() -> void:
 
 	if score > Settings.high_score:
 		Settings.high_score = score
-		Settings.save_game_data()
+		Settings.save_high_score()
 
 	screens.game_over(score, Settings.high_score)
 
