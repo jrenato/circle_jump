@@ -15,6 +15,11 @@ var master_bus: int
 var music_bus: int
 var sound_bus: int
 
+var music_volume: float = 1.0:
+	set(value):
+		music_volume = value
+		set_music_volume(music_volume)
+
 @onready var music_player: AudioStreamPlayer = %MusicPlayer
 @onready var sound_players: Array[AudioStreamPlayer]
 @onready var sound_players_node: Node = %SoundPlayers
@@ -76,6 +81,18 @@ func set_music_volume(value: float) -> void:
 
 func set_sound_volume(value: float) -> void:
 	AudioServer.set_bus_volume_db(sound_bus, linear_to_db(value))
+
+
+func get_master_volume() -> float:
+	return db_to_linear(AudioServer.get_bus_volume_db(master_bus))
+
+
+func get_music_volume() -> float:
+	return db_to_linear(AudioServer.get_bus_volume_db(music_bus))
+
+
+func get_sound_volume() -> float:
+	return db_to_linear(AudioServer.get_bus_volume_db(sound_bus))
 
 
 func _on_music_player_finished() -> void:

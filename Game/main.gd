@@ -37,6 +37,7 @@ func new_game() -> void:
 	score = 0
 	level = 1
 
+	AudioManager.music_volume = 1.0
 	AudioManager.play_music("LightPuzzle")
 
 
@@ -68,6 +69,13 @@ func spawn_circle(circle_position: Variant = null, disable_points: bool = false)
 	circle.init_circle(circle_position, level, disable_points)
 
 
+func fade_music() -> void:
+	var fade_tween: Tween = create_tween()
+	fade_tween.tween_property(AudioManager, "music_volume", 0.0, 1.0)
+	await fade_tween.finished
+	AudioManager.stop_music()
+
+
 func _on_jumper_captured(target_area: Area2D) -> void:
 	if not target_area is Circle:
 		return
@@ -94,4 +102,4 @@ func _on_jumper_died() -> void:
 
 	screens.game_over(score, Settings.high_score)
 
-	AudioManager.stop_music()
+	fade_music()
