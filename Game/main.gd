@@ -8,6 +8,8 @@ var score: int :
 		score = value
 		update_score()
 
+var new_high_score: bool = false
+
 var jumper: Jumper
 var level: int = 1
 
@@ -36,6 +38,7 @@ func new_game() -> void:
 	hud.show_message("Go!")
 	score = 0
 	level = 1
+	new_high_score = false
 
 	AudioManager.music_volume = 1.0
 	AudioManager.play_music("LightPuzzle")
@@ -43,6 +46,11 @@ func new_game() -> void:
 
 func update_score() -> void:
 	hud.update_score(score)
+
+	if score > Settings.high_score and not new_high_score:
+		hud.show_message("New Record!")
+		new_high_score = true
+		
 	if score > 0 and score % Settings.circles_per_level == 0:
 		level += 1
 		hud.show_message("Level %d" % level)
