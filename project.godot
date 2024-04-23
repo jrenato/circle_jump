@@ -21,14 +21,14 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 [application]
 
 config/name="Circle Jump"
-run/main_scene="res://Main/main.tscn"
+run/main_scene="res://Game/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
-AudioManager="*res://Main/audio_manager.tscn"
+AudioManager="*res://Autoload/audio_manager.tscn"
 Settings="*res://Autoload/settings.gd"
 
 [debug]

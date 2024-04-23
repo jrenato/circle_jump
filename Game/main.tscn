@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c654gl6qdi5ky"]
+[gd_scene load_steps=8 format=3 uid="uid://c654gl6qdi5ky"]
 
-[ext_resource type="Script" path="res://Main/main.gd" id="1_f463y"]
-[ext_resource type="PackedScene" uid="uid://cj7a4lchc8gh8" path="res://Circle/circle.tscn" id="2_rdiop"]
-[ext_resource type="PackedScene" uid="uid://klhics3c6r1a" path="res://Jumper/jumper.tscn" id="3_42k7g"]
+[ext_resource type="Script" path="res://Game/main.gd" id="1_f463y"]
+[ext_resource type="PackedScene" uid="uid://cj7a4lchc8gh8" path="res://Game/Circle/circle.tscn" id="2_rdiop"]
+[ext_resource type="PackedScene" uid="uid://klhics3c6r1a" path="res://Game/Jumper/jumper.tscn" id="3_42k7g"]
 [ext_resource type="Texture2D" uid="uid://d2cyw3pwjae06" path="res://Assets/Images/circle_1.png" id="4_mxg8y"]
 [ext_resource type="PackedScene" uid="uid://g5cp30neerml" path="res://GUI/screens.tscn" id="4_vdj2v"]
 [ext_resource type="PackedScene" uid="uid://b4ackxvfw2y11" path="res://GUI/hud.tscn" id="5_5dfxc"]
@@ -11,12 +11,6 @@
 min_value = -1.0
 _data = [Vector2(0, -1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
-
-[sub_resource type="Environment" id="Environment_yn8c2"]
-background_mode = 3
-glow_intensity = 0.37
-glow_blend_mode = 0
-glow_hdr_threshold = 0.64
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_f463y")
@@ -74,6 +68,3 @@ position = Vector2(240, 630)
 offset = Vector2(0, -200)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_yn8c2")

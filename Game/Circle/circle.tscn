@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=3 uid="uid://cj7a4lchc8gh8"]
 
-[ext_resource type="Script" path="res://Circle/circle.gd" id="1_1qqjh"]
-[ext_resource type="Shader" path="res://Shaders/color.gdshader" id="1_g1c4m"]
+[ext_resource type="Script" path="res://Game/Circle/circle.gd" id="1_1qqjh"]
+[ext_resource type="Shader" path="res://Resources/Shaders/color.gdshader" id="1_g1c4m"]
 [ext_resource type="Texture2D" uid="uid://d2cyw3pwjae06" path="res://Assets/Images/circle_1.png" id="1_mknme"]
-[ext_resource type="Shader" path="res://Shaders/circle_glow.gdshader" id="2_61gxt"]
+[ext_resource type="Shader" path="res://Resources/Shaders/circle_glow.gdshader" id="2_61gxt"]
 [ext_resource type="Texture2D" uid="uid://bt7fwxlj42i5q" path="res://Assets/Images/circle_3.png" id="4_v6km0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3iodi"]
