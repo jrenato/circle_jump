@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_tlptu")
 name = "Deep Sea"
-default = true
+default = false
 unlocked = true
 background = Color(0, 0, 0.501961, 1)
 player_body = Color(0, 1, 1, 1)
