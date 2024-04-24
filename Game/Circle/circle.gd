@@ -52,7 +52,8 @@ func _ready() -> void:
 
 	# Update the theme
 	sprite.material = sprite.material.duplicate()
-	sprite_effect.material = sprite.material
+	sprite_effect.material = sprite_effect.material.duplicate()
+	sprite_effect.material.set_shader_parameter("color", sprite.material.get_shader_parameter("color"))
 	orbit_progress_bar.tint_progress = Settings.theme["circle_fill"]
 
 	# Randomize the orbit direction
