@@ -3,15 +3,16 @@ extends Node2D
 @export var circle_scene: PackedScene
 @export var jumper_scene: PackedScene
 
+var jumper: Jumper
+
 var score: int :
 	set(value):
 		score = value
 		update_score()
 
 var new_high_score: bool = false
-
-var jumper: Jumper
 var level: int = 1
+var bonus: int = 1
 
 @onready var screens: CanvasLayer = %Screens
 @onready var hud: Control = %HUD
@@ -38,6 +39,7 @@ func new_game() -> void:
 	hud.show_message("Go!")
 	score = 0
 	level = 1
+	set_bonus(1)
 	new_high_score = false
 
 	AudioManager.music_volume = 1.0
@@ -50,10 +52,15 @@ func update_score() -> void:
 	if score > Settings.high_score and not new_high_score:
 		hud.show_message("New Record!")
 		new_high_score = true
-		
+
 	if score > 0 and score % Settings.circles_per_level == 0:
 		level += 1
 		hud.show_message("Level %d" % level)
+
+
+func set_bonus(value: int) -> void:
+	bonus = value
+	hud.update_bonus(bonus)
 
 
 func spawn_jumper() -> void:
@@ -67,6 +74,8 @@ func spawn_jumper() -> void:
 func spawn_circle(circle_position: Variant = null, disable_points: bool = false) -> void:
 	var circle: Circle = circle_scene.instantiate()
 	add_child(circle)
+
+	circle.orbit_completed.connect(set_bonus.bind(1))
 
 	if disable_points:
 		circle.points = 0
@@ -88,7 +97,8 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 	if not target_area is Circle:
 		return
 
-	score += target_area.points
+	score += target_area.points * bonus
+	set_bonus(bonus + 1)
 	hud.update_score(score)
 
 	var target_circle: Circle = target_area

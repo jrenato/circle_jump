@@ -1,10 +1,12 @@
 class_name Circle extends Area2D
 
-enum MODE {STATIC, LIMITED}
+signal orbit_completed
+
+enum MODE {UNLIMITED, LIMITED}
 
 var jumper: Jumper = null
 
-var mode: MODE = MODE.STATIC:
+var mode: MODE = MODE.UNLIMITED:
 	set(value):
 		mode = value
 		update_mode()
@@ -29,7 +31,7 @@ var orbit_start: float = 0.0:
 		orbit_progress_bar.radial_initial_angle = rad_to_deg(orbit_start + PI/2)
 
 var max_orbits: int = 3 # Number of orbits until the circle disappears
-var orbits_left: int = 0 # Number of orbits the jumper has completed
+var current_orbits: int = 0 # Number of orbits the jumper has completed
 
 var move_range: float = 0.0 # How far the circle can move. Zero means it won't move
 var move_speed: float = 1.0 # How fast the circle moves
@@ -64,12 +66,12 @@ func init_circle(circle_position: Vector2, level: int, first_circle: bool = fals
 
 	level = level * 3
 
-	var modes: Array = [MODE.STATIC, MODE.LIMITED]
+	var modes: Array = [MODE.UNLIMITED, MODE.LIMITED]
 	var weights: Array = [10, level-1]
 	if not first_circle:
 		mode = modes[Settings.get_weighted_random(weights)]
 	else:
-		mode = MODE.STATIC
+		mode = MODE.UNLIMITED
 
 	var move_chance: float = clamp((level - 10), 0, 9) / 10.0
 	if randf() < move_chance and not first_circle:
@@ -84,9 +86,8 @@ func init_circle(circle_position: Vector2, level: int, first_circle: bool = fals
 
 func _process(delta: float) -> void:
 	pivot.rotation += rotation_speed * delta
-	if mode == MODE.LIMITED and jumper:
+	if jumper:
 		check_orbits()
-		update_ui()
 
 
 func update_radius() -> void:
@@ -102,13 +103,12 @@ func update_mode() -> void:
 	var color: Color
 
 	match mode:
-		MODE.STATIC:
+		MODE.UNLIMITED:
 			orbits_label.hide()
 			orbit_progress_bar.hide()
 			color = Settings.theme["circle_static"]
 		MODE.LIMITED:
-			orbits_left = max_orbits
-			orbits_label.text = str(orbits_left)
+			orbits_label.text = str(max_orbits - current_orbits)
 			orbits_label.show()
 			orbit_progress_bar.hide()
 			color = Settings.theme["circle_limited"]
@@ -129,25 +129,29 @@ func start_movement() -> void:
 
 func check_orbits() -> void:
 	if abs(pivot.rotation - orbit_start) >= 2 * PI:
-		orbits_left -= 1
+		current_orbits += 1
+		orbit_completed.emit()
 
-		AudioManager.play_sound("Beep")
+		if mode == MODE.LIMITED:
+			AudioManager.play_sound("Beep")
+			update_ui()
 
-		if orbits_left <= 0:
-			jumper.die()
-			jumper = null
-			implode()
+			if current_orbits >= max_orbits:
+				jumper.die()
+				jumper = null
+				implode()
 
 		orbit_start = pivot.rotation
 
 
 func update_ui() -> void:
-	if orbits_label.text != str(orbits_left):
-		orbits_label.text = str(orbits_left)
+	if orbits_label.text != str(max_orbits - current_orbits):
+		orbits_label.text = str(max_orbits - current_orbits)
 	orbit_progress_bar.value = abs(pivot.rotation - orbit_start) / (2 * PI)
 
 
 func capture(player: Jumper) -> void:
+	current_orbits = 0
 	jumper = player
 	animation_player.play("capture")
 	pivot.rotation = (jumper.position - position).angle()
@@ -157,6 +161,7 @@ func capture(player: Jumper) -> void:
 
 
 func implode() -> void:
+	jumper = null
 	if !animation_player.is_playing():
 		animation_player.play("implode")
 	await animation_player.animation_finished
