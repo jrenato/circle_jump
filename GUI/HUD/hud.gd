@@ -24,7 +24,9 @@ func update_bonus(bonus: int) -> void:
 
 func hide_hud() -> void:
 	score_box.hide()
+	bonus_label.hide()
 
 
 func show_hud() -> void:
 	score_box.show()
+	bonus_label.show()
