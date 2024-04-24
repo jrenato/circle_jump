@@ -67,6 +67,8 @@ func init_circle(circle_position: Vector2, level: int, first_circle: bool = fals
 
 	level = level * 3
 
+	update_ui()
+
 	var modes: Array = [MODE.UNLIMITED, MODE.LIMITED]
 	var weights: Array = [10, level-1]
 	if not silent_capture:
@@ -129,13 +131,15 @@ func start_movement() -> void:
 
 
 func check_orbits() -> void:
+	if mode == MODE.LIMITED:
+		update_ui()
+
 	if abs(pivot.rotation - orbit_start) >= 2 * PI:
 		current_orbits += 1
 		orbit_completed.emit()
 
 		if mode == MODE.LIMITED:
 			AudioManager.play_sound("Beep")
-			update_ui()
 
 			if current_orbits >= max_orbits:
 				jumper.die()
