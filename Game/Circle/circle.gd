@@ -75,6 +75,7 @@ func init_circle(circle_position: Vector2, level: int, first_circle: bool = fals
 		mode = modes[Settings.get_weighted_random(weights)]
 	else:
 		mode = MODE.UNLIMITED
+	update_mode()
 
 	var move_chance: float = clamp((level - 10), 0, 9) / 10.0
 	if randf() < move_chance and not silent_capture:
