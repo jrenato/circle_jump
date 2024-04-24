@@ -5,6 +5,7 @@ signal orbit_completed
 enum MODE {UNLIMITED, LIMITED}
 
 var jumper: Jumper = null
+var silent_capture: bool = false
 
 var mode: MODE = MODE.UNLIMITED:
 	set(value):
@@ -36,8 +37,6 @@ var current_orbits: int = 0 # Number of orbits the jumper has completed
 var move_range: float = 0.0 # How far the circle can move. Zero means it won't move
 var move_speed: float = 1.0 # How fast the circle moves
 
-var points: int = 1
-
 @onready var pivot: Node2D = %Pivot
 @onready var collision_shape: CollisionShape2D = %CollisionShape2D
 @onready var sprite: Sprite2D = %Sprite2D
@@ -64,23 +63,25 @@ func init_circle(circle_position: Vector2, level: int, first_circle: bool = fals
 	position = circle_position
 	radius = 100
 
+	silent_capture = first_circle
+
 	level = level * 3
 
 	var modes: Array = [MODE.UNLIMITED, MODE.LIMITED]
 	var weights: Array = [10, level-1]
-	if not first_circle:
+	if not silent_capture:
 		mode = modes[Settings.get_weighted_random(weights)]
 	else:
 		mode = MODE.UNLIMITED
 
 	var move_chance: float = clamp((level - 10), 0, 9) / 10.0
-	if randf() < move_chance and not first_circle:
+	if randf() < move_chance and not silent_capture:
 		move_range = max(25, 100 * randf_range(0.75, 1.25) * move_chance) * pow(-1, randi() % 2)
 		move_speed = max(2.5 - ceil(level/5.0) * 0.25, 0.75)
 		start_movement()
 
 	var small_chance = min(0.9, max(0, (level-10) / 20.0))
-	if randf() < small_chance and not first_circle:
+	if randf() < small_chance and not silent_capture:
 		radius = max(50, radius - level * randf_range(0.75, 1.25))
 
 
@@ -153,7 +154,8 @@ func update_ui() -> void:
 func capture(player: Jumper) -> void:
 	current_orbits = 0
 	jumper = player
-	animation_player.play("capture")
+	if not silent_capture:
+		animation_player.play("capture")
 	pivot.rotation = (jumper.position - position).angle()
 	orbit_start = pivot.rotation
 	if mode == MODE.LIMITED:
