@@ -64,6 +64,7 @@ func update_score() -> void:
 func update_level() -> void:
 	if captured_circles > 0 and captured_circles % Settings.circles_per_level == 0:
 		level += 1
+		print("Level %d" % level)
 		hud.show_message("Level %d" % level)
 
 
@@ -107,7 +108,6 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 	if not target_circle.silent_capture:
 		score += bonus
 		captured_circles += 1
-		hud.show_message("Circles")
 		set_bonus(bonus + 1)
 
 	# Updated the camera position

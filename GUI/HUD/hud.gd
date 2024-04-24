@@ -8,6 +8,8 @@ extends Control
 
 
 func show_message(text: String) -> void:
+	if animation_player.is_playing():
+		animation_player.stop()
 	message_label.text = text
 	animation_player.play("show_message")
 
