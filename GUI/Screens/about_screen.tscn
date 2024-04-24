@@ -42,13 +42,13 @@ theme_override_fonts/normal_font = ExtResource("2_r6udv")
 bbcode_enabled = true
 text = "[center][u]Circle Jump[/u]
 
-[img]res://Assets/Images/godot_logo.png[/img][/center]
+[img]res://Assets/Images/mole_maria.png[/img][/center]
 
-Circle Jump is a game made with the Godot Game Engine, based on KidsCanCode [url=https://github.com/kidscancode/circle_jump]Circle Jump Source[/url]
+This game was made with the Godot Engine, and is based on [url=https://github.com/kidscancode/circle_jump]Circle Jump Source[/url]
 
-Copyright © 2024 Karvalho
+[center]Copyright © 2024 Karvalho
 
-[url=https://github.com/kidscancode/circle_jump/blob/master/LICENSE]License Information[/url]"
+[url=https://github.com/kidscancode/circle_jump/blob/master/LICENSE]License Information[/url][/center]"
 fit_content = true
 
 [node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
