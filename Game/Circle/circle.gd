@@ -160,6 +160,8 @@ func capture(player: Jumper) -> void:
 	jumper = player
 	if not silent_capture:
 		animation_player.play("capture")
+		AudioManager.play_sound("Capture")
+
 	pivot.rotation = (jumper.position - position).angle()
 	orbit_start = pivot.rotation
 	if mode == MODE.LIMITED:

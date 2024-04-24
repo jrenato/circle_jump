@@ -61,7 +61,6 @@ func _on_area_entered(area: Area2D) -> void:
 		target = area as Circle
 		velocity = Vector2.ZERO
 		captured.emit(area)
-		AudioManager.play_sound("Capture")
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
