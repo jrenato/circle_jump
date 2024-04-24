@@ -21,8 +21,6 @@ var current_screen: BaseScreen = null
 
 
 func _ready() -> void:
-	DisplayServer.window_set_window_event_callback(_on_window_event)
-
 	register_buttons()
 	change_screen(title_screen)
 
@@ -117,24 +115,18 @@ func _on_button_pressed(button: BaseButton) -> void:
 			start_game.emit()
 
 
-func _on_window_event(event: int) -> void:
-	match event:
-		DisplayServer.WINDOW_EVENT_FOCUS_OUT:
-			pass
-			# TODO: Implement pause game
-			# Pause game if it's in progress and not already paused
-			#if game_in_progress and not get_tree().paused:
-				#_on_game_pause_game()
-				#Signals.add_log_msg("Lost focus, pausing the game")
-		DisplayServer.WINDOW_EVENT_CLOSE_REQUEST:
-			get_tree().quit()
-		DisplayServer.WINDOW_EVENT_GO_BACK_REQUEST:
-			match current_screen:
-				settings_screen:
-					change_screen(title_screen)
-				game_over_screen:
-					change_screen(title_screen)
-				about_screen:
-					change_screen(title_screen)
-				title_screen:
-					get_tree().quit()
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		# Handle Android back button
+		match current_screen:
+			title_screen:
+				get_tree().quit()
+			settings_screen:
+				change_screen(title_screen)
+			game_over_screen:
+				change_screen(title_screen)
+			about_screen:
+				change_screen(title_screen)
+	elif what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
+		# TODO: Implement pause game
+		pass
