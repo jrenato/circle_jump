@@ -21,6 +21,7 @@ resources_spreadsheet_view/context_menu_on_leftclick=false
 [application]
 
 config/name="Circle Jump"
+config/version="0.0.2"
 run/main_scene="res://Game/main.tscn"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.2", "Mobile")
