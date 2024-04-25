@@ -1,8 +1,7 @@
-# Whenever a tag push matching pattern "v*" then run the job
-on: 
+on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - master
 
 jobs:
   # job id, can be anything
@@ -12,7 +11,7 @@ jobs:
     # Add permission for release creation. Can be made narrower according to your needs
     permissions: write-all
     # Job name, can be anything
-    name: Export Game
+    name: Export Game to Github
     steps:
       # Always include the checkout step so that 
       # your project is available for Godot to export
