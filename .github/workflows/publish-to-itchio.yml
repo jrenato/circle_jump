@@ -10,7 +10,7 @@ jobs:
         id: download-windows
         uses: dsaltares/fetch-gh-release-asset@master
         with:
-          file: yourgame-windows.zip
+          file: circle_jump_windows.zip
         env:
           GITHUB_TOKEN: "${{ secrets.GH_CREDENTIALS }}"
       - name: deploy to itch.io (Windows)
