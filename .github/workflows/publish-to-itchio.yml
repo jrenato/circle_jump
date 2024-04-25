@@ -20,5 +20,5 @@ jobs:
           CHANNEL: windows
           ITCH_GAME: circle-jump
           ITCH_USER: karvalho
-          PACKAGE: circle-jump-windows.zip
+          PACKAGE: circle_jump_windows.zip
           VERSION: ${{ steps.download-windows.outputs.version }}
