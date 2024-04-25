@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4ackxvfw2y11"]
+[gd_scene load_steps=14 format=3 uid="uid://b4ackxvfw2y11"]
 
 [ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="1_jrovp"]
 [ext_resource type="Script" path="res://GUI/HUD/hud.gd" id="1_l8by6"]
@@ -10,9 +10,13 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_l2qto"]
 font = ExtResource("1_jrovp")
 
-[sub_resource type="LabelSettings" id="LabelSettings_nrd11"]
+[sub_resource type="LabelSettings" id="LabelSettings_hx230"]
 font = ExtResource("1_jrovp")
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_nrd11"]
+font = ExtResource("1_jrovp")
+font_size = 64
 
 [sub_resource type="Animation" id="Animation_708op"]
 length = 0.001
@@ -51,59 +55,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BonusLabel:label_settings:font_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("BonusLabel:scale")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_w2wex"]
-resource_name = "bonus"
-length = 0.15
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BonusLabel:label_settings:font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BonusLabel:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.15),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_k6gf0"]
@@ -178,9 +129,70 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g3pj3"]
 _data = {
 "RESET": SubResource("Animation_708op"),
-"bonus": SubResource("Animation_w2wex"),
 "init": SubResource("Animation_k6gf0"),
 "show_message": SubResource("Animation_uca6p")
+}
+
+[sub_resource type="Animation" id="Animation_v5lik"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BonusLabel:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BonusLabel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wamif"]
+resource_name = "bonus"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BonusLabel:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BonusLabel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_berp3"]
+_data = {
+"RESET": SubResource("Animation_v5lik"),
+"bonus": SubResource("Animation_wamif")
 }
 
 [node name="HUD" type="Control"]
@@ -196,12 +208,15 @@ script = ExtResource("1_l8by6")
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 460.0
-offset_bottom = 65.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 30.0
+offset_top = 19.0
+offset_right = -124.0
+offset_bottom = 69.0
+grow_horizontal = 2
 size_flags_vertical = 1
-text = "1 x"
+text = "999 x"
 label_settings = SubResource("LabelSettings_m6s43")
 
 [node name="ScoreBox" type="MarginContainer" parent="."]
@@ -237,7 +252,7 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 1
 text = "100"
-label_settings = SubResource("LabelSettings_m6s43")
+label_settings = SubResource("LabelSettings_hx230")
 
 [node name="Message" type="Label" parent="."]
 unique_name_in_owner = true
@@ -269,6 +284,5 @@ autoplay = "init"
 [node name="BonusAnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_g3pj3")
+"": SubResource("AnimationLibrary_berp3")
 }
-autoplay = "init"

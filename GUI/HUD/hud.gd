@@ -1,5 +1,12 @@
 extends Control
 
+var score: int:
+	set(value):
+		score = value
+		tween_step(value)
+
+var score_tween: Tween
+
 @onready var score_box: MarginContainer = %ScoreBox
 @onready var score_label: Label = %ScoreLabel
 @onready var bonus_label: Label = %BonusLabel
@@ -15,8 +22,18 @@ func show_message(text: String) -> void:
 	message_animation_player.play("show_message")
 
 
-func update_score(score: int) -> void:
-	score_label.text = str(score)
+func update_score(current_score: int, added_score: int) -> void:
+	score = current_score
+	if score_tween:
+		score_tween.kill()
+	score_tween = create_tween()
+	score_tween.tween_property(self, "score", added_score, 0.25)\
+		.set_trans(Tween.TRANS_LINEAR)\
+		.set_ease(Tween.EASE_IN_OUT)
+
+
+func tween_step(value: int):
+	score_label.text = str(value)
 
 
 func update_bonus(bonus: int) -> void:

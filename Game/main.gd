@@ -6,9 +6,9 @@ extends Node2D
 var jumper: Jumper
 
 var score: int :
-	set(value):
-		score = value
-		update_score()
+	set(new_score):
+		set_score(score, new_score)
+		score = new_score
 
 var captured_circles: int = 0:
 	set(value):
@@ -52,10 +52,10 @@ func new_game() -> void:
 	AudioManager.play_music("LightPuzzle")
 
 
-func update_score() -> void:
-	hud.update_score(score)
+func set_score(current_score: int, new_score: int) -> void:
+	hud.update_score(current_score, new_score)
 
-	if score > Settings.high_score and not new_high_score:
+	if current_score + new_score > Settings.high_score and not new_high_score:
 		hud.show_message("New Record!")
 		new_high_score = true
 
@@ -70,6 +70,7 @@ func update_level() -> void:
 func set_bonus(value: int) -> void:
 	bonus = value
 	hud.update_bonus(bonus)
+
 
 func spawn_jumper() -> void:
 	jumper = jumper_scene.instantiate()
