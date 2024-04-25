@@ -4,14 +4,15 @@ extends Control
 @onready var score_label: Label = %ScoreLabel
 @onready var bonus_label: Label = %BonusLabel
 @onready var message_label: Label = %Message
-@onready var animation_player: AnimationPlayer = %AnimationPlayer
+@onready var message_animation_player: AnimationPlayer = %MessageAnimationPlayer
+@onready var bonus_animation_player: AnimationPlayer = %BonusAnimationPlayer
 
 
 func show_message(text: String) -> void:
-	if animation_player.is_playing():
-		animation_player.stop()
+	if message_animation_player.is_playing():
+		await message_animation_player.animation_finished
 	message_label.text = text
-	animation_player.play("show_message")
+	message_animation_player.play("show_message")
 
 
 func update_score(score: int) -> void:
@@ -21,7 +22,9 @@ func update_score(score: int) -> void:
 func update_bonus(bonus: int) -> void:
 	bonus_label.text = "%s x" % str(bonus)
 	if bonus > 1:
-		animation_player.play("bonus")
+		if bonus_animation_player.is_playing():
+			await bonus_animation_player.animation_finished
+		bonus_animation_player.play("bonus")
 
 
 func hide_hud() -> void:

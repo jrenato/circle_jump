@@ -259,7 +259,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="MessageAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_g3pj3")
+}
+autoplay = "init"
+
+[node name="BonusAnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_g3pj3")

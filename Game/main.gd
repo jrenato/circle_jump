@@ -64,7 +64,6 @@ func update_score() -> void:
 func update_level() -> void:
 	if captured_circles > 0 and captured_circles % Settings.circles_per_level == 0:
 		level += 1
-		print("Level %d" % level)
 		hud.show_message("Level %d" % level)
 
 
