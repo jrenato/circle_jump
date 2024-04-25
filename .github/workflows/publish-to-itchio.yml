@@ -1,0 +1,8 @@
+steps:
+- uses: manleydev/butler-publish-itchio-action@master
+  env:
+    BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+    CHANNEL: windows
+    ITCH_GAME: circle-jump
+    ITCH_USER: karvalho
+    PACKAGE: build/windows
