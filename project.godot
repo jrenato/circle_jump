@@ -25,8 +25,7 @@ run/main_scene="res://Game/main.tscn"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.2", "Mobile")
 run/max_fps=60
-boot_splash/image="res://Assets/Images/mole_maria.png"
-boot_splash/fullsize=false
+boot_splash/image="res://Assets/Images/traditional-dark.png"
 config/icon="res://icon.svg"
 boot_splash/minimum_display_time=3000
 

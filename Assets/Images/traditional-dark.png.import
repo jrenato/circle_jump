@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dr85kj2v7uv8j"
-path="res://.godot/imported/mole_maria.png-9aaec5c5aa27875e291035b24c29716a.ctex"
+uid="uid://ct2yt87pojht8"
+path="res://.godot/imported/traditional-dark.png-1c44c3f0f7e9f7c33535f74eaf24cd59.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/mole_maria.png"
-dest_files=["res://.godot/imported/mole_maria.png-9aaec5c5aa27875e291035b24c29716a.ctex"]
+source_file="res://Assets/Images/traditional-dark.png"
+dest_files=["res://.godot/imported/traditional-dark.png-1c44c3f0f7e9f7c33535f74eaf24cd59.ctex"]
 
 [params]
 
