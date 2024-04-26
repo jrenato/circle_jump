@@ -10,6 +10,7 @@ jobs:
         id: download-windows
         uses: dsaltares/fetch-gh-release-asset@master
         with:
+          version: "latest"
           file: circle_jump_windows.zip
         env:
           GITHUB_TOKEN: "${{ secrets.GH_CREDENTIALS }}"
@@ -22,13 +23,52 @@ jobs:
           ITCH_USER: karvalho
           PACKAGE: circle_jump_windows.zip
           VERSION: ${{ steps.download-windows.outputs.version }}
-  release_web:
+  # release_macos:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: download MacOS
+  #       id: download-macos
+  #       uses: dsaltares/fetch-gh-release-asset@master
+  #       with:
+  #         version: "latest"
+  #         file: circle_jump_macos.zip
+  #         token: "${{ secrets.GH_CREDENTIALS }}"
+  #     - name: deploy to itch.io (MacOS)
+  #       uses: josephbmanley/butler-publish-itchio-action@master
+  #       env:
+  #         BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+  #         CHANNEL: mac
+  #         ITCH_GAME: circle-jump
+  #         ITCH_USER: karvalho
+  #         PACKAGE: circle_jump_macos.zip
+  #         VERSION: ${{ steps.download-macos.outputs.version }}
+  release_linux:
     runs-on: ubuntu-latest
     steps:
-      - name: download Web
-        id: download-web
+      - name: download Linux
+        id: download-linux
         uses: dsaltares/fetch-gh-release-asset@master
         with:
+          version: "latest"
+          file: circle_jump_linux.zip
+          token: "${{ secrets.GH_CREDENTIALS }}"
+      - name: deploy to itch.io (Linux)
+        uses: josephbmanley/butler-publish-itchio-action@master
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          CHANNEL: linux
+          ITCH_GAME: circle-jump
+          ITCH_USER: karvalho
+          PACKAGE: circle_jump_linux.zip
+          VERSION: ${{ steps.download-linux.outputs.version }}
+  release_html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download HTML5
+        id: download-html
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          version: "latest"
           file: circle_jump_web.zip
         env:
           GITHUB_TOKEN: "${{ secrets.GH_CREDENTIALS }}"
@@ -40,4 +80,4 @@ jobs:
           ITCH_GAME: circle-jump
           ITCH_USER: karvalho
           PACKAGE: circle_jump_web.zip
-          VERSION: ${{ steps.download-web.outputs.version }}
+          VERSION: ${{ steps.download-html.outputs.version }}
