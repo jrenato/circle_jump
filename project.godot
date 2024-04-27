@@ -32,7 +32,7 @@ boot_splash/minimum_display_time=3000
 [autoload]
 
 AudioManager="*res://Autoload/audio_manager.tscn"
-Settings="*res://Autoload/settings.gd"
+Settings="*res://Autoload/settings.tscn"
 
 [debug]
 
@@ -53,5 +53,6 @@ enabled=PackedStringArray("res://addons/resources_spreadsheet_view/plugin.cfg")
 
 [rendering]
 
+textures/vram_compression/import_s3tc_bptc=true
 textures/vram_compression/import_etc2_astc=true
 viewport/hdr_2d=true

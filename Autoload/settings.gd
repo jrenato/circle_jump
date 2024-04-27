@@ -1,9 +1,10 @@
 extends Node
 
+# TODO: Reconsider using dictionary instead of array
+@export var color_schemes: Array[ColorScheme]
+
 var highscore_location: String = "user://highscore.dat"
 var settings_location: String = "user://settings.dat"
-var themes_location: String = "res://Resources/Themes/"
-var color_schemes: Dictionary
 
 var circles_per_level: int = 5
 var high_score: int
@@ -12,30 +13,27 @@ var theme: ColorScheme
 var theme_name: String:
 	set(value):
 		theme_name = value
-		theme = color_schemes[value]
+		update_theme()
 
 
 func _ready() -> void:
-	load_themes() # Iterate through files in theme directory and load them as color schemes
+	load_default_theme()
 	load_high_score()
 	load_settings()
 
 
-func load_themes() -> void:
-	var theme_dir = DirAccess.open(themes_location)
+func load_default_theme() -> void:
+	for color_scheme in color_schemes:
+		if color_scheme.default:
+			theme_name = color_scheme.name
+			break
 
-	if theme_dir:
-		theme_dir.list_dir_begin()
-		var file_name = theme_dir.get_next()
-		while file_name != "":
-			if not theme_dir.current_is_dir():
-				var theme_resource = load(themes_location + file_name)
-				if theme_resource is ColorScheme:
-					color_schemes[theme_resource.name] = theme_resource
-					if theme_resource.default:
-						theme = theme_resource
-						theme_name = theme_resource.name
-			file_name = theme_dir.get_next()
+
+func update_theme() -> void:
+	for color_scheme in color_schemes:
+		if color_scheme.name == theme_name:
+			theme = color_scheme
+			break
 
 
 func get_weighted_random(weights: Array) -> int:

@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d2cyw3pwjae06" path="res://Assets/Images/circle_1.png" id="2_qvcso"]
 [ext_resource type="Texture2D" uid="uid://uqblc7nub1pa" path="res://Assets/Images/buttons/gear.png" id="3_7kdb6"]
 
-[sub_resource type="Shader" id="Shader_hrylf"]
+[sub_resource type="Shader" id="Shader_8ol8i"]
 code = "shader_type canvas_item;
 
 uniform vec4 color : source_color;
@@ -24,8 +24,8 @@ void fragment() {
 	COLOR.a = texture(TEXTURE, UV).a + smoothstep(thickness/2.0, 0.0, abs(dist - rad));
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_anrv3"]
-shader = SubResource("Shader_hrylf")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_np1xj"]
+shader = SubResource("Shader_8ol8i")
 shader_parameter/color = Color(1.13348e-05, 0.534614, 0.100703, 1)
 shader_parameter/speed = 1.5
 shader_parameter/radius = 0.27
@@ -60,7 +60,7 @@ grow_vertical = 2
 script = ExtResource("1_hp6yv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_anrv3")
+material = SubResource("ShaderMaterial_np1xj")
 position = Vector2(136, 146)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_qvcso")

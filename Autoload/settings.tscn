@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3 uid="uid://crpryxm74i620"]
+
+[ext_resource type="Script" path="res://Autoload/settings.gd" id="1_wnd5y"]
+[ext_resource type="Resource" uid="uid://dxcl2s2mk5iwu" path="res://Resources/Themes/neon1.tres" id="2_q41n6"]
+[ext_resource type="Resource" uid="uid://oeyi1ua41367" path="res://Resources/Themes/neon2.tres" id="3_t3h10"]
+[ext_resource type="Resource" uid="uid://0a1pfujga5qi" path="res://Resources/Themes/neon3.tres" id="4_s7iww"]
+
+[node name="Settings" type="Node"]
+script = ExtResource("1_wnd5y")
+color_schemes = Array[Resource("res://Resources/color_scheme.gd")]([ExtResource("2_q41n6"), ExtResource("3_t3h10"), ExtResource("4_s7iww")])
