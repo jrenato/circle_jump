@@ -9,14 +9,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_3iodi"]
 radius = 134.034
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifdf6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xcjwo"]
 shader = ExtResource("2_61gxt")
 shader_parameter/color = Color(0.101961, 1, 0, 1)
 shader_parameter/speed = 0.0
 shader_parameter/radius = 0.289
 shader_parameter/width = 0.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_elmqu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rq6pp"]
 shader = ExtResource("4_v1xx5")
 shader_parameter/color = Color(0.00729171, 0, 0.910716, 1)
 
@@ -173,13 +173,13 @@ shape = SubResource("CircleShape2D_3iodi")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 modulate = Color(0, 0.597273, 0.597863, 1)
-material = SubResource("ShaderMaterial_ifdf6")
+material = SubResource("ShaderMaterial_xcjwo")
 texture = ExtResource("1_mknme")
 
 [node name="SpriteEffect" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
-material = SubResource("ShaderMaterial_elmqu")
+material = SubResource("ShaderMaterial_rq6pp")
 texture = ExtResource("1_mknme")
 
 [node name="Pivot" type="Node2D" parent="."]
