@@ -13,11 +13,15 @@ var score: int :
 var captured_circles: int = 0:
 	set(value):
 		captured_circles = value
-		update_level()
+		set_level()
+
+var bonus: int = 1:
+	set(value):
+		bonus = value
+		hud.update_bonus(bonus)
 
 var new_high_score: bool = false
 var level: int = 1
-var bonus: int = 1
 
 @onready var screens: CanvasLayer = %Screens
 @onready var hud: Control = %HUD
@@ -45,7 +49,8 @@ func new_game() -> void:
 	score = 0
 	level = 1
 	captured_circles = 0
-	set_bonus(1)
+	#set_bonus(1)
+	bonus = 1
 	new_high_score = false
 
 	AudioManager.music_volume = 1.0
@@ -61,15 +66,10 @@ func set_score(current_score: int, new_score: int) -> void:
 
 
 
-func update_level() -> void:
+func set_level() -> void:
 	if captured_circles > 0 and captured_circles % Settings.circles_per_level == 0:
 		level += 1
 		hud.show_message("Level %d" % level)
-
-
-func set_bonus(value: int) -> void:
-	bonus = value
-	hud.update_bonus(bonus)
 
 
 func spawn_jumper() -> void:
@@ -84,7 +84,7 @@ func spawn_circle(circle_position: Variant = null, disable_points: bool = false)
 	var circle: Circle = circle_scene.instantiate()
 	add_child(circle)
 
-	circle.orbit_completed.connect(set_bonus.bind(1))
+	circle.orbit_completed.connect(func(): bonus = 1)
 
 	if not circle_position:
 		circle_position = jumper.target.position + Vector2(randi_range(-150, 150), randi_range(-500, -400))
@@ -108,7 +108,8 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 	if not target_circle.silent_capture:
 		score += bonus
 		captured_circles += 1
-		set_bonus(bonus + 1)
+		#set_bonus(bonus + 1)
+		bonus += 1
 
 	# Updated the camera position
 	camera.position = target_circle.position
