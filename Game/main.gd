@@ -17,8 +17,10 @@ var captured_circles: int = 0:
 
 var bonus: int = 1:
 	set(value):
+		# If bonus > 1 && value == 1, it means the
+		# bonus was downgraded (reset)
+		hud.update_bonus(value, bonus > 1 && value == 1)
 		bonus = value
-		hud.update_bonus(bonus)
 
 var new_high_score: bool = false
 var level: int = 1

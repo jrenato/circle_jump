@@ -36,12 +36,16 @@ func tween_step(value: int):
 	score_label.text = str(value)
 
 
-func update_bonus(bonus: int) -> void:
+func update_bonus(bonus: int, downgraded: bool = false) -> void:
 	bonus_label.text = "%s x" % str(bonus)
+
+	if bonus_animation_player.is_playing():
+		await bonus_animation_player.animation_finished
+
 	if bonus > 1:
-		if bonus_animation_player.is_playing():
-			await bonus_animation_player.animation_finished
-		bonus_animation_player.play("bonus")
+		bonus_animation_player.play("bonus_up")
+	elif downgraded:
+		bonus_animation_player.play("bonus_down")
 
 
 func hide_hud() -> void:

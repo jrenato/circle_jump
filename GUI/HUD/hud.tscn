@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b4ackxvfw2y11"]
+[gd_scene load_steps=15 format=3 uid="uid://b4ackxvfw2y11"]
 
 [ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="1_jrovp"]
 [ext_resource type="Script" path="res://GUI/HUD/hud.gd" id="1_l8by6"]
@@ -161,7 +161,36 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_wamif"]
-resource_name = "bonus"
+resource_name = "bonus_up"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BonusLabel:label_settings:font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BonusLabel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mcou3"]
+resource_name = "bonus_down"
 length = 0.3
 step = 0.01
 tracks/0/type = "value"
@@ -186,13 +215,14 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(0.8, 0.8), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_berp3"]
 _data = {
 "RESET": SubResource("Animation_v5lik"),
-"bonus": SubResource("Animation_wamif")
+"bonus_down": SubResource("Animation_mcou3"),
+"bonus_up": SubResource("Animation_wamif")
 }
 
 [node name="HUD" type="Control"]
