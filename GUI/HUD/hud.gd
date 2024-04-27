@@ -3,16 +3,17 @@ extends Control
 var score: int:
 	set(value):
 		score = value
-		tween_step(value)
+		score_tween_step(value)
 
 var score_tween: Tween
 
-@onready var score_box: MarginContainer = %ScoreBox
+@onready var score_name_label: Label = $HBoxContainer/ScoreNameLabel
 @onready var score_label: Label = %ScoreLabel
 @onready var bonus_label: Label = %BonusLabel
 @onready var message_label: Label = %Message
-@onready var message_animation_player: AnimationPlayer = %MessageAnimationPlayer
 @onready var bonus_animation_player: AnimationPlayer = %BonusAnimationPlayer
+@onready var score_animation_player: AnimationPlayer = %ScoreAnimationPlayer
+@onready var message_animation_player: AnimationPlayer = %MessageAnimationPlayer
 
 
 func show_message(text: String) -> void:
@@ -24,6 +25,14 @@ func show_message(text: String) -> void:
 
 func update_score(current_score: int, added_score: int) -> void:
 	score = current_score
+
+	if added_score == 0:
+		return
+
+	if score_animation_player.is_playing():
+		score_animation_player.stop()
+	score_animation_player.play("score_up")
+
 	if score_tween:
 		score_tween.kill()
 	score_tween = create_tween()
@@ -32,7 +41,7 @@ func update_score(current_score: int, added_score: int) -> void:
 		.set_ease(Tween.EASE_IN_OUT)
 
 
-func tween_step(value: int):
+func score_tween_step(value: int):
 	score_label.text = str(value)
 
 
@@ -49,10 +58,12 @@ func update_bonus(bonus: int, downgraded: bool = false) -> void:
 
 
 func hide_hud() -> void:
-	score_box.hide()
+	score_name_label.hide()
+	score_label.hide()
 	bonus_label.hide()
 
 
 func show_hud() -> void:
-	score_box.show()
+	score_label.show()
+	score_name_label.show()
 	bonus_label.show()

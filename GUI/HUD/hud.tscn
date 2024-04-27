@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4ackxvfw2y11"]
+[gd_scene load_steps=18 format=3 uid="uid://b4ackxvfw2y11"]
 
 [ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="1_jrovp"]
 [ext_resource type="Script" path="res://GUI/HUD/hud.gd" id="1_l8by6"]
@@ -225,6 +225,68 @@ _data = {
 "bonus_up": SubResource("Animation_wamif")
 }
 
+[sub_resource type="Animation" id="Animation_yht8d"]
+resource_name = "score_up"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/ScoreLabel:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_swurq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HBoxContainer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HBoxContainer/ScoreLabel:label_settings:font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vjicl"]
+_data = {
+"RESET": SubResource("Animation_swurq"),
+"score_up": SubResource("Animation_yht8d")
+}
+
 [node name="HUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -249,26 +311,23 @@ size_flags_vertical = 1
 text = "999 x"
 label_settings = SubResource("LabelSettings_m6s43")
 
-[node name="ScoreBox" type="MarginContainer" parent="."]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-grow_horizontal = 2
+offset_left = -460.0
+offset_top = -64.0
+offset_right = -20.0
+offset_bottom = -14.0
+grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ScoreBox"]
-layout_mode = 2
+pivot_offset = Vector2(440, 50)
 alignment = 2
 
-[node name="Label" type="Label" parent="ScoreBox/HBoxContainer"]
+[node name="ScoreNameLabel" type="Label" parent="HBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 1
@@ -276,7 +335,7 @@ text = "Score"
 label_settings = SubResource("LabelSettings_l2qto")
 vertical_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="ScoreBox/HBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
@@ -315,4 +374,10 @@ autoplay = "init"
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_berp3")
+}
+
+[node name="ScoreAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_vjicl")
 }
