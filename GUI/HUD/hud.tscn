@@ -7,6 +7,10 @@
 font = ExtResource("1_jrovp")
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_nrd11"]
+font = ExtResource("1_jrovp")
+font_size = 64
+
 [sub_resource type="LabelSettings" id="LabelSettings_l2qto"]
 font = ExtResource("1_jrovp")
 
@@ -14,43 +18,27 @@ font = ExtResource("1_jrovp")
 font = ExtResource("1_jrovp")
 font_size = 32
 
-[sub_resource type="LabelSettings" id="LabelSettings_nrd11"]
-font = ExtResource("1_jrovp")
-font_size = 64
-
 [sub_resource type="Animation" id="Animation_708op"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Message:visible")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/ControlMessage/MessageLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Message:modulate")
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/ControlMessage/MessageLabel:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Message:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -63,26 +51,26 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Message:label_settings:font_size")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/ControlMessage/MessageLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [64]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Message:visible")
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/ControlMessage/MessageLabel:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_uca6p"]
@@ -92,34 +80,22 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Message:visible")
-tracks/0/interp = 1
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/ControlMessage/MessageLabel:modulate")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Message:modulate")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.75),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Message:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/ControlMessage/MessageLabel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.75),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -138,7 +114,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BonusLabel:label_settings:font_color")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/ControlBonus/BonusLabel:label_settings:font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -150,7 +126,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BonusLabel:scale")
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/ControlBonus/BonusLabel:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -167,7 +143,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BonusLabel:label_settings:font_color")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/ControlBonus/BonusLabel:label_settings:font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -179,7 +155,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BonusLabel:scale")
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/ControlBonus/BonusLabel:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -196,7 +172,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BonusLabel:label_settings:font_color")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/ControlBonus/BonusLabel:label_settings:font_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -208,7 +184,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BonusLabel:scale")
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/ControlBonus/BonusLabel:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -230,7 +206,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer:scale")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/ControlScore/HBoxContainer:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -242,7 +218,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HBoxContainer/ScoreLabel:label_settings:font_color")
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/ControlScore/HBoxContainer/ScoreLabel:label_settings:font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -259,7 +235,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("HBoxContainer:scale")
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/ControlScore/HBoxContainer:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -271,7 +247,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("HBoxContainer/ScoreLabel:label_settings:font_color")
+tracks/1/path = NodePath("MarginContainer/VBoxContainer/ControlScore/HBoxContainer/ScoreLabel:label_settings:font_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -296,56 +272,48 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l8by6")
 
-[node name="BonusLabel" type="Label" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ControlBonus" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BonusLabel" type="Label" parent="MarginContainer/VBoxContainer/ControlBonus"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 30.0
-offset_top = 19.0
-offset_right = -124.0
-offset_bottom = 69.0
+offset_bottom = 39.0
 grow_horizontal = 2
 size_flags_vertical = 1
 text = "999 x"
 label_settings = SubResource("LabelSettings_m6s43")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -460.0
-offset_top = -64.0
-offset_right = -20.0
-offset_bottom = -14.0
-grow_horizontal = 0
-grow_vertical = 0
-pivot_offset = Vector2(440, 50)
-alignment = 2
-
-[node name="ScoreNameLabel" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_vertical = 1
-text = "Score"
-label_settings = SubResource("LabelSettings_l2qto")
 vertical_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 50)
+[node name="ControlMessage" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 1
-text = "100"
-label_settings = SubResource("LabelSettings_hx230")
+size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="Message" type="Label" parent="."]
+[node name="MessageLabel" type="Label" parent="MarginContainer/VBoxContainer/ControlMessage"]
 unique_name_in_owner = true
-visible = false
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(480, 78)
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -356,12 +324,51 @@ offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(240, 39)
-size_flags_vertical = 1
+size_flags_vertical = 3
 text = "Message"
 label_settings = SubResource("LabelSettings_nrd11")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
+
+[node name="ControlScore" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ControlScore"]
+custom_minimum_size = Vector2(420, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -418.0
+offset_top = -50.0
+offset_right = 2.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(420, 50)
+alignment = 2
+
+[node name="ScoreNameLabel" type="Label" parent="MarginContainer/VBoxContainer/ControlScore/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Score"
+label_settings = SubResource("LabelSettings_l2qto")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/ControlScore/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 1
+text = "100"
+label_settings = SubResource("LabelSettings_hx230")
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="MessageAnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true

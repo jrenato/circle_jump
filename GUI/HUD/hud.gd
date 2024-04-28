@@ -7,10 +7,10 @@ var score: int:
 
 var score_tween: Tween
 
-@onready var score_name_label: Label = $HBoxContainer/ScoreNameLabel
+@onready var score_name_label: Label = %ScoreNameLabel
 @onready var score_label: Label = %ScoreLabel
 @onready var bonus_label: Label = %BonusLabel
-@onready var message_label: Label = %Message
+@onready var message_label: Label = %MessageLabel
 @onready var bonus_animation_player: AnimationPlayer = %BonusAnimationPlayer
 @onready var score_animation_player: AnimationPlayer = %ScoreAnimationPlayer
 @onready var message_animation_player: AnimationPlayer = %MessageAnimationPlayer

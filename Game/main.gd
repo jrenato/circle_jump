@@ -49,10 +49,9 @@ func new_game() -> void:
 	hud.show_hud()
 	hud.show_message("Go!")
 	score = 0
+	bonus = 1
 	level = 1
 	captured_circles = 0
-	#set_bonus(1)
-	bonus = 1
 	new_high_score = false
 
 	AudioManager.music_volume = 1.0
@@ -124,6 +123,9 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 func _on_jumper_died() -> void:
 	get_tree().call_group("circles", "implode")
 	hud.hide_hud()
+
+	score = 0
+	bonus = 1
 
 	if score > Settings.high_score:
 		Settings.high_score = score
