@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://klhics3c6r1a"]
+[gd_scene load_steps=7 format=3 uid="uid://klhics3c6r1a"]
 
 [ext_resource type="Texture2D" uid="uid://bygpeeo2vrmv6" path="res://Assets/Images/jumper.png" id="1_e32ii"]
 [ext_resource type="Script" path="res://Game/Jumper/jumper.gd" id="1_lxmx5"]
@@ -8,8 +8,12 @@
 shader = ExtResource("2_hkoh7")
 shader_parameter/color = Color(0, 0.8, 0.407843, 1)
 
-[sub_resource type="Gradient" id="Gradient_t8f82"]
-colors = PackedColorArray(1, 1, 1, 0, 1, 0.654902, 0, 1)
+[sub_resource type="Curve" id="Curve_rh6sa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_0q2uy"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Jumper" type="Area2D"]
 script = ExtResource("1_lxmx5")
@@ -25,11 +29,16 @@ texture = ExtResource("1_e32ii")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[node name="Trail" type="Node" parent="."]
+[node name="Node" type="Node" parent="."]
 
-[node name="Points" type="Line2D" parent="Trail"]
+[node name="TrailLine2D" type="Line2D" parent="Node"]
 unique_name_in_owner = true
-gradient = SubResource("Gradient_t8f82")
+width = 15.0
+width_curve = SubResource("Curve_rh6sa")
+gradient = SubResource("Gradient_0q2uy")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
