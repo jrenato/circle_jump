@@ -235,6 +235,7 @@ grow_vertical = 2
 pivot_offset = Vector2(75, 75)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 
 [node name="OrbitProgressBar" type="TextureProgressBar" parent="UI"]
 unique_name_in_owner = true

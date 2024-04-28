@@ -24,6 +24,7 @@ font = ExtResource("2_e8fij")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_je2cb"]
 
 [node name="SettingsScreen" type="Control" node_paths=PackedStringArray("music_label", "sound_label")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

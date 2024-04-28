@@ -51,12 +51,22 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 hue_variation_curve = SubResource("Curve_4ttu3")
 
+[node name="PauseBackgroundLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseRect" type="ColorRect" parent="PauseBackgroundLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.886275)
+
 [node name="Screens" parent="." instance=ExtResource("4_vdj2v")]
 unique_name_in_owner = true
 
 [node name="HUD" parent="Screens" instance=ExtResource("5_5dfxc")]
 unique_name_in_owner = true
-mouse_filter = 2
 
 [node name="StartPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true

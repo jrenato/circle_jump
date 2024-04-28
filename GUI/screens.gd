@@ -15,6 +15,7 @@ var fadeout_duration: float = 0.5
 var current_screen: BaseScreen = null
 
 @onready var title_screen: BaseScreen = %TitleScreen
+@onready var pause_screen: BaseScreen = %PauseScreen
 @onready var settings_screen: BaseScreen = %SettingsScreen
 @onready var game_over_screen: BaseScreen = %GameOverScreen
 @onready var about_screen: BaseScreen = %AboutScreen
@@ -38,7 +39,7 @@ func register_buttons() -> void:
 			"MusicButton":
 				button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
 				settings_screen.music_label.text = "Music " + ("On" if AudioManager.is_music_enabled() else "Off")
-					
+
 			"SoundButton":
 				button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
 				settings_screen.sound_label.text = "Sound " + ("On" if AudioManager.is_sound_enabled() else "Off")
@@ -52,12 +53,22 @@ func change_screen(new_screen: BaseScreen) -> void:
 		var disappear_tween: Tween = current_screen.disappear()
 		await(disappear_tween.finished)
 
-	if new_screen:
-		current_screen = new_screen
+	current_screen = new_screen
+
+	if current_screen:
 		var appear_tween: Tween = current_screen.appear()
 		await(appear_tween.finished)
 		# Only after the screen is fully appeared can we enable the buttons
 		get_tree().call_group("buttons", "set_disabled", false)
+
+
+func pause_resume_game() -> void:
+	if get_tree().paused:
+		change_screen(null)
+		get_tree().paused = false
+	else:
+		change_screen(pause_screen)
+		get_tree().paused = true
 
 
 func game_over(score: int, high_score: int) -> void:
@@ -79,7 +90,7 @@ func _on_button_pressed(button: BaseButton) -> void:
 			change_screen(null)
 			await(get_tree().create_timer(fadeout_duration).timeout)
 			start_game.emit()
-		"SettingsButton":
+		"TitleSettingsButton":
 			change_screen(settings_screen)
 		"AboutButton":
 			change_screen(about_screen)
@@ -88,7 +99,10 @@ func _on_button_pressed(button: BaseButton) -> void:
 
 		# Settings Screen
 		"BackButton":
-			change_screen(title_screen)
+			if not get_tree().paused:
+				change_screen(title_screen)
+			else:
+				change_screen(pause_screen)
 		"MusicButton":
 			AudioManager.set_music_enabled(!AudioManager.is_music_enabled())
 			button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
@@ -113,6 +127,14 @@ func _on_button_pressed(button: BaseButton) -> void:
 			change_screen(null)
 			await(get_tree().create_timer(fadeout_duration).timeout)
 			start_game.emit()
+
+
+		# Pause Screen 
+		"PauseSettingsButton":
+			change_screen(settings_screen)
+		"PauseHomeButton":
+			get_tree().paused = false
+			Settings.game_cancelled.emit()
 
 
 func _notification(what: int) -> void:

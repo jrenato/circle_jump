@@ -30,15 +30,18 @@ var level: int = 1
 @onready var start_position: Marker2D = %StartPosition
 @onready var camera: Camera2D = %Camera2D
 @onready var background_rect: ColorRect = %BackgroundRect
+@onready var pause_rect: ColorRect = %PauseRect
 
 
 func _ready() -> void:
 	randomize()
 	screens.start_game.connect(new_game)
+	hud.pause_resume_game.connect(_on_pause_resume_pressed)
 
 	hud.hide_hud()
 
 	background_rect.color = Settings.theme["background"]
+	pause_rect.visible = false
 
 
 func new_game() -> void:
@@ -53,6 +56,8 @@ func new_game() -> void:
 	level = 1
 	captured_circles = 0
 	new_high_score = false
+
+	pause_rect.visible = false
 
 	AudioManager.music_volume = 1.0
 	AudioManager.play_music("LightPuzzle")
@@ -132,5 +137,14 @@ func _on_jumper_died() -> void:
 		Settings.save_high_score()
 
 	screens.game_over(score, Settings.high_score)
+	pause_rect.visible = false
 
 	fade_music()
+
+
+func _on_pause_resume_pressed() -> void:
+	if get_tree().paused:
+		pause_rect.visible = false
+	else:
+		pause_rect.visible = true
+	screens.pause_resume_game()

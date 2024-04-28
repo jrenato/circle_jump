@@ -1,5 +1,7 @@
 extends Node
 
+signal game_cancelled
+
 # TODO: Reconsider using dictionary instead of array
 @export var color_schemes: Array[ColorScheme]
 

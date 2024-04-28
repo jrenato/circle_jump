@@ -20,6 +20,8 @@ var blank_trail: Array[Vector2]
 
 
 func _ready() -> void:
+	Settings.game_cancelled.connect(die)
+
 	sprite.material.set_shader_parameter("color", Settings.theme["player_body"])
 	var trail_color: Color = Settings.theme["player_trail"]
 	trail_line.gradient.set_color(0, trail_color)
@@ -53,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		position += velocity * delta
 
 
-func _input(event: InputEvent) -> void:
+func  _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch or event is InputEventMouseButton:
 		if target and event.is_pressed():
 			jump()
@@ -73,6 +75,10 @@ func die() -> void:
 	died.emit()
 	target = null
 	queue_free()
+
+
+func _on_game_cancelled() -> void:
+	die()
 
 
 func _on_area_entered(area: Area2D) -> void:

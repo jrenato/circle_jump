@@ -1,7 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://b4ackxvfw2y11"]
+[gd_scene load_steps=20 format=3 uid="uid://b4ackxvfw2y11"]
 
 [ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="1_jrovp"]
 [ext_resource type="Script" path="res://GUI/HUD/hud.gd" id="1_l8by6"]
+[ext_resource type="Texture2D" uid="uid://hwycs3m13rn2" path="res://Assets/Images/buttons/resume.png" id="3_kiire"]
+[ext_resource type="Texture2D" uid="uid://qjyiisrnvbgg" path="res://Assets/Images/buttons/pause.png" id="3_x6o56"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_m6s43"]
 font = ExtResource("1_jrovp")
@@ -264,13 +266,17 @@ _data = {
 }
 
 [node name="HUD" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_l8by6")
+pause_texture = ExtResource("3_x6o56")
+resume_texture = ExtResource("3_kiire")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -291,6 +297,7 @@ mouse_filter = 2
 
 [node name="ControlBonus" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="BonusLabel" type="Label" parent="MarginContainer/VBoxContainer/ControlBonus"]
 unique_name_in_owner = true
@@ -298,12 +305,25 @@ custom_minimum_size = Vector2(0, 50)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 39.0
+offset_right = -57.0
+offset_bottom = 50.0
 grow_horizontal = 2
 size_flags_vertical = 1
 text = "999 x"
 label_settings = SubResource("LabelSettings_m6s43")
 vertical_alignment = 1
+
+[node name="PauseResumeButton" type="TextureButton" parent="MarginContainer/VBoxContainer/ControlBonus"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 50.0
+grow_horizontal = 0
+focus_mode = 0
+texture_normal = ExtResource("3_x6o56")
 
 [node name="ControlMessage" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -388,3 +408,5 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_vjicl")
 }
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ControlBonus/PauseResumeButton" to="." method="_on_pause_resume_button_pressed"]

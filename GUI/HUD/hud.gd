@@ -1,5 +1,10 @@
 extends Control
 
+signal pause_resume_game
+
+@export var pause_texture: Texture2D
+@export var resume_texture: Texture2D
+
 var score: int:
 	set(value):
 		score = value
@@ -14,6 +19,7 @@ var score_tween: Tween
 @onready var bonus_animation_player: AnimationPlayer = %BonusAnimationPlayer
 @onready var score_animation_player: AnimationPlayer = %ScoreAnimationPlayer
 @onready var message_animation_player: AnimationPlayer = %MessageAnimationPlayer
+@onready var pause_resume_button: TextureButton = %PauseResumeButton
 
 
 func show_message(text: String) -> void:
@@ -61,9 +67,19 @@ func hide_hud() -> void:
 	score_name_label.hide()
 	score_label.hide()
 	bonus_label.hide()
+	pause_resume_button.hide()
 
 
 func show_hud() -> void:
-	score_label.show()
 	score_name_label.show()
+	score_label.show()
 	bonus_label.show()
+	pause_resume_button.show()
+
+
+func _on_pause_resume_button_pressed() -> void:
+	if get_tree().paused:
+		pause_resume_button.texture_normal = pause_texture
+	else:
+		pause_resume_button.texture_normal = resume_texture
+	pause_resume_game.emit()
