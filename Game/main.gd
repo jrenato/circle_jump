@@ -36,12 +36,17 @@ var level: int = 1
 func _ready() -> void:
 	randomize()
 	screens.start_game.connect(new_game)
+	Settings.theme_changed.connect(_on_theme_changed)
+
+	update_theme()
+
 	hud.pause_resume_game.connect(_on_pause_resume_pressed)
-
 	hud.hide_hud()
-
-	background_rect.color = Settings.theme["background"]
 	pause_rect.visible = false
+
+
+func update_theme() -> void:
+	background_rect.color = Settings.theme["background"]
 
 
 func new_game() -> void:
@@ -148,3 +153,7 @@ func _on_pause_resume_pressed() -> void:
 	else:
 		pause_rect.visible = true
 	screens.pause_resume_game()
+
+
+func _on_theme_changed() -> void:
+	update_theme()

@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_mumxx")
-name = "Neon1"
-default = false
+name = "Neon 1"
+default = true
 unlocked = true
 background = Color(0, 0, 0, 1)
 player_body = Color(0.796078, 1, 0, 1)

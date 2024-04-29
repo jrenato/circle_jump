@@ -48,16 +48,20 @@ var move_speed: float = 1.0 # How fast the circle moves
 
 
 func _ready() -> void:
+	Settings.theme_changed.connect(_on_theme_changed)
 	sprite_effect.visible = false
 
-	# Update the theme
+	update_theme()
+
+	# Randomize the orbit direction
+	rotation_speed *= pow(-1, randi() % 2)
+
+func update_theme() -> void:
+	# Update the theme colors
 	sprite.material = sprite.material.duplicate()
 	sprite_effect.material = sprite_effect.material.duplicate()
 	sprite_effect.material.set_shader_parameter("color", sprite.material.get_shader_parameter("color"))
 	orbit_progress_bar.tint_progress = Settings.theme["circle_fill"]
-
-	# Randomize the orbit direction
-	rotation_speed *= pow(-1, randi() % 2)
 
 
 func init_circle(circle_position: Vector2, level: int, first_circle: bool = false) -> void:
@@ -176,3 +180,8 @@ func implode() -> void:
 		animation_player.play("implode")
 	await animation_player.animation_finished
 	queue_free()
+
+
+func _on_theme_changed() -> void:
+	update_theme()
+	update_mode()

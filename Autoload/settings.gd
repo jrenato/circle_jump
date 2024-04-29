@@ -1,6 +1,7 @@
 extends Node
 
 signal game_cancelled
+signal theme_changed
 
 # TODO: Reconsider using dictionary instead of array
 @export var color_schemes: Array[ColorScheme]
@@ -22,6 +23,7 @@ func _ready() -> void:
 	load_default_theme()
 	load_high_score()
 	load_settings()
+	theme_changed.emit()
 
 
 func load_default_theme() -> void:
@@ -35,6 +37,7 @@ func update_theme() -> void:
 	for color_scheme in color_schemes:
 		if color_scheme.name == theme_name:
 			theme = color_scheme
+			theme_changed.emit()
 			break
 
 

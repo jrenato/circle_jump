@@ -27,18 +27,19 @@ material = SubResource("ShaderMaterial_ypoxg")
 rotation = 1.5708
 texture = ExtResource("1_e32ii")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
 [node name="Node" type="Node" parent="."]
 
 [node name="TrailLine2D" type="Line2D" parent="Node"]
 unique_name_in_owner = true
+z_index = -1
 width = 15.0
 width_curve = SubResource("Curve_rh6sa")
 gradient = SubResource("Gradient_0q2uy")
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ColorScheme" load_steps=2 format=3 uid="uid://c02qwaxr3yj6g"]
+
+[ext_resource type="Script" path="res://Resources/color_scheme.gd" id="1_jtwrh"]
+
+[resource]
+script = ExtResource("1_jtwrh")
+name = "Forest Mystery"
+default = false
+unlocked = true
+background = Color(0, 0.109804, 0, 1)
+player_body = Color(0, 1, 0, 1)
+player_trail = Color(0.196078, 0.803922, 0.196078, 1)
+circle_fill = Color(1, 0.6, 0.2, 1)
+circle_static = Color(1, 1, 1, 1)
+circle_limited = Color(1, 0, 0, 1)

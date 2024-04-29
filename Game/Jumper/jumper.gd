@@ -21,7 +21,12 @@ var blank_trail: Array[Vector2]
 
 func _ready() -> void:
 	Settings.game_cancelled.connect(die)
+	Settings.theme_changed.connect(_on_theme_changed)
 
+	update_theme()
+
+
+func update_theme() -> void:
 	sprite.material.set_shader_parameter("color", Settings.theme["player_body"])
 	var trail_color: Color = Settings.theme["player_trail"]
 	trail_line.gradient.set_color(0, trail_color)
@@ -91,3 +96,7 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	if not target:
 		die()
+
+
+func _on_theme_changed() -> void:
+	update_theme()

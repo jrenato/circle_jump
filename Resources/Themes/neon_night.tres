@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ColorScheme" load_steps=2 format=3 uid="uid://bphllkv1v7eam"]
+
+[ext_resource type="Script" path="res://Resources/color_scheme.gd" id="1_buvyp"]
+
+[resource]
+script = ExtResource("1_buvyp")
+name = "Neon Night"
+default = false
+unlocked = true
+background = Color(0.148321, 7.53607e-05, 0.193995, 1)
+player_body = Color(1, 1, 0, 1)
+player_trail = Color(1, 0, 1, 1)
+circle_fill = Color(0, 1, 1, 1)
+circle_static = Color(1, 0, 0, 1)
+circle_limited = Color(0, 1, 0, 1)

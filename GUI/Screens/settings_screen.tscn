@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://iiv6u34hcmsv"]
+[gd_scene load_steps=20 format=3 uid="uid://iiv6u34hcmsv"]
 
 [ext_resource type="Script" path="res://GUI/base_screen.gd" id="1_vdjwt"]
 [ext_resource type="FontFile" uid="uid://c4ipibpwabuor" path="res://Assets/Fonts/Xolonium-Regular.ttf" id="2_e8fij"]
@@ -13,6 +13,23 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_roocj"]
 font = ExtResource("2_e8fij")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_22lkr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l3rcc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_loasw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2uexr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8bxt3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kxgcd"]
+font = ExtResource("2_e8fij")
+
+[sub_resource type="LabelSettings" id="LabelSettings_hms4j"]
+font = ExtResource("2_e8fij")
+font_size = 32
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8j85r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_baaxx"]
@@ -23,7 +40,7 @@ font = ExtResource("2_e8fij")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_je2cb"]
 
-[node name="SettingsScreen" type="Control" node_paths=PackedStringArray("music_label", "sound_label")]
+[node name="SettingsScreen" type="Control" node_paths=PackedStringArray("music_label", "sound_label", "theme_label")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -34,8 +51,9 @@ offset_right = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vdjwt")
-music_label = NodePath("MarginContainer/VBoxContainer/Buttons/MusicButton/MusicLabel")
-sound_label = NodePath("MarginContainer/VBoxContainer/Buttons/SoundButton/SoundLabel")
+music_label = NodePath("MarginContainer/VBoxContainer/SFXButtons/MusicButton/MusicLabel")
+sound_label = NodePath("MarginContainer/VBoxContainer/SFXButtons/SoundButton/SoundLabel")
+theme_label = NodePath("MarginContainer/VBoxContainer/ThemeButtons/VBoxContainer/ThemeLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -53,25 +71,25 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 120
+theme_override_constants/separation = 80
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="SettingsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
 label_settings = SubResource("LabelSettings_tp6g6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="SFXButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 75
 alignment = 1
 
-[node name="MusicButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
+[node name="MusicButton" type="TextureButton" parent="MarginContainer/VBoxContainer/SFXButtons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("3_ii7qc")
 
-[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/Buttons/MusicButton"]
+[node name="MusicLabel" type="Label" parent="MarginContainer/VBoxContainer/SFXButtons/MusicButton"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -84,11 +102,11 @@ text = "Music On"
 label_settings = SubResource("LabelSettings_roocj")
 horizontal_alignment = 1
 
-[node name="SoundButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons" groups=["buttons"]]
+[node name="SoundButton" type="TextureButton" parent="MarginContainer/VBoxContainer/SFXButtons" groups=["buttons"]]
 layout_mode = 2
 texture_normal = ExtResource("2_jq21h")
 
-[node name="SoundLabel" type="Label" parent="MarginContainer/VBoxContainer/Buttons/SoundButton"]
+[node name="SoundLabel" type="Label" parent="MarginContainer/VBoxContainer/SFXButtons/SoundButton"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -100,6 +118,54 @@ grow_vertical = 0
 text = "Sound On"
 label_settings = SubResource("LabelSettings_roocj")
 horizontal_alignment = 1
+
+[node name="ThemeButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ThemeLeftButton" type="Button" parent="MarginContainer/VBoxContainer/ThemeButtons" groups=["buttons"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_e8fij")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_22lkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l3rcc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_loasw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2uexr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8bxt3")
+text = "<"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ThemeButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="ThemeNameLabel" type="Label" parent="MarginContainer/VBoxContainer/ThemeButtons/VBoxContainer"]
+layout_mode = 2
+text = "Select a Theme"
+label_settings = SubResource("LabelSettings_kxgcd")
+horizontal_alignment = 1
+
+[node name="ThemeLabel" type="Label" parent="MarginContainer/VBoxContainer/ThemeButtons/VBoxContainer"]
+layout_mode = 2
+text = "Neon 1"
+label_settings = SubResource("LabelSettings_hms4j")
+horizontal_alignment = 1
+
+[node name="ThemeRightButton" type="Button" parent="MarginContainer/VBoxContainer/ThemeButtons" groups=["buttons"]]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_e8fij")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_22lkr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l3rcc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_loasw")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2uexr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8bxt3")
+text = ">"
 
 [node name="AdsButton" type="Button" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
 layout_mode = 2

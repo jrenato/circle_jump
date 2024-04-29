@@ -14,6 +14,8 @@ var sound_buttons = {
 var fadeout_duration: float = 0.5
 var current_screen: BaseScreen = null
 
+var themes: Array[String]
+
 @onready var title_screen: BaseScreen = %TitleScreen
 @onready var pause_screen: BaseScreen = %PauseScreen
 @onready var settings_screen: BaseScreen = %SettingsScreen
@@ -22,8 +24,14 @@ var current_screen: BaseScreen = null
 
 
 func _ready() -> void:
+	Settings.theme_changed.connect(_on_theme_changed)
+
 	register_buttons()
+	for theme in Settings.color_schemes:
+		themes.append(theme.name)
 	change_screen(title_screen)
+	
+	settings_screen.theme_label.text = Settings.theme_name
 
 
 func register_buttons() -> void:
@@ -81,6 +89,20 @@ func game_over(score: int, high_score: int) -> void:
 		game_over_screen.highscore_label.text = "Best: %d" % high_score
 
 
+func shift_theme(direction: String = "Right") -> void:
+	var current_index = themes.find(Settings.theme_name)
+	if current_index == -1:
+		current_index = 0
+
+	if direction == "Right":
+		current_index = (current_index + 1) % themes.size()
+	else:
+		current_index = (current_index - 1) % themes.size()
+
+	Settings.theme_name = themes[current_index]
+	Settings.save_settings()
+
+
 func _on_button_pressed(button: BaseButton) -> void:
 	AudioManager.play_sound("Click")
 
@@ -113,12 +135,17 @@ func _on_button_pressed(button: BaseButton) -> void:
 			button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
 			settings_screen.sound_label.text = "Sound " + ("On" if AudioManager.is_sound_enabled() else "Off")
 			Settings.save_settings()
+		"ThemeLeftButton":
+			shift_theme("Left")
+		"ThemeRightButton":
+			shift_theme("Right")
 		"AdsButton":
 			# TODO: Implement ads
 			if button.text == "Disable Ads":
 				button.text = "Enable Ads"
 			else:
 				button.text = "Disable Ads"
+			Settings.save_settings()
 
 		# Game Over Screen
 		"HomeButton":
@@ -135,6 +162,10 @@ func _on_button_pressed(button: BaseButton) -> void:
 		"PauseHomeButton":
 			get_tree().paused = false
 			Settings.game_cancelled.emit()
+
+
+func _on_theme_changed() -> void:
+	settings_screen.theme_label.text = Settings.theme_name
 
 
 func _notification(what: int) -> void:
