@@ -12,20 +12,29 @@ var score: int:
 
 var score_tween: Tween
 
-@onready var score_name_label: Label = %ScoreNameLabel
+# Containers
+@onready var bonus_container: VBoxContainer = %BonusVBoxContainer
+@onready var score_container: VBoxContainer = %ScoreVBoxContainer
+@onready var level_container: VBoxContainer = %LevelVBoxContainer
+# Labels
 @onready var score_label: Label = %ScoreLabel
 @onready var bonus_label: Label = %BonusLabel
+@onready var level_label: Label = %LevelLabel
 @onready var message_label: Label = %MessageLabel
+# Buttons
+@onready var pause_resume_button: TextureButton = %PauseResumeButton
+# Animation Players
 @onready var bonus_animation_player: AnimationPlayer = %BonusAnimationPlayer
 @onready var score_animation_player: AnimationPlayer = %ScoreAnimationPlayer
 @onready var message_animation_player: AnimationPlayer = %MessageAnimationPlayer
-@onready var pause_resume_button: TextureButton = %PauseResumeButton
 
 
 func show_message(text: String) -> void:
+	message_label.text = text
+	message_label.pivot_offset = message_label.size / 2
+
 	if message_animation_player.is_playing():
 		await message_animation_player.animation_finished
-	message_label.text = text
 	message_animation_player.play("show_message")
 
 
@@ -63,17 +72,21 @@ func update_bonus(bonus: int, downgraded: bool = false) -> void:
 		bonus_animation_player.play("bonus_down")
 
 
+func update_level(level: int) -> void:
+	level_label.text = str(level)
+
+
 func hide_hud() -> void:
-	score_name_label.hide()
-	score_label.hide()
-	bonus_label.hide()
+	bonus_container.hide()
+	score_container.hide()
+	level_container.hide()
 	pause_resume_button.hide()
 
 
 func show_hud() -> void:
-	score_name_label.show()
-	score_label.show()
-	bonus_label.show()
+	bonus_container.show()
+	score_container.show()
+	level_container.show()
 	pause_resume_button.show()
 
 

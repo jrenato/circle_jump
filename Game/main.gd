@@ -23,7 +23,12 @@ var bonus: int = 1:
 		bonus = value
 
 var new_high_score: bool = false
-var level: int = 1
+var level: int = 1:
+	set(value):
+		level = value
+		hud.update_level(level)
+		if level > 1:
+			hud.show_message(tr("LEVEL").format({"level": level}))
 
 @onready var screens: CanvasLayer = %Screens
 @onready var hud: Control = %HUD
@@ -80,7 +85,7 @@ func set_score(current_score: int, new_score: int) -> void:
 func set_level() -> void:
 	if captured_circles > 0 and captured_circles % Settings.circles_per_level == 0:
 		level += 1
-		hud.show_message(tr("LEVEL").format({"level": level}))
+		
 
 
 func spawn_jumper() -> void:
@@ -133,7 +138,7 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 func _on_jumper_died() -> void:
 	get_tree().call_group("circles", "implode")
 	hud.hide_hud()
-	
+
 	fade_music()
 	pause_rect.visible = false
 
@@ -142,6 +147,10 @@ func _on_jumper_died() -> void:
 		Settings.save_high_score()
 
 	screens.game_over(score, Settings.high_score)
+
+	score = 0
+	level = 1
+	bonus = 1
 
 
 func _on_pause_resume_pressed() -> void:
