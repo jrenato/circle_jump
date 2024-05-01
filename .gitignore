@@ -20,3 +20,14 @@ mono_crash.*.json
 # Builds
 build/
 builds/
+
+# Admob
+*.zip
+
+# Android 
+*.aar
+*.gdap
+
+# iOS
+*.a
+*.gdip
