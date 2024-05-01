@@ -46,11 +46,11 @@ func register_buttons() -> void:
 				pass
 			"MusicButton":
 				button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
-				settings_screen.music_label.text = "Music " + ("On" if AudioManager.is_music_enabled() else "Off")
+				settings_screen.music_label.text = "MUSIC_" + ("ON" if AudioManager.is_music_enabled() else "OFF")
 
 			"SoundButton":
 				button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
-				settings_screen.sound_label.text = "Sound " + ("On" if AudioManager.is_sound_enabled() else "Off")
+				settings_screen.sound_label.text = "SOUND_" + ("ON" if AudioManager.is_sound_enabled() else "OFF")
 
 
 func change_screen(new_screen: BaseScreen) -> void:
@@ -84,9 +84,9 @@ func game_over(score: int, high_score: int) -> void:
 
 	# Update the score and highscore
 	if game_over_screen.score_label:
-		game_over_screen.score_label.text = "Score: %d" % score
+		game_over_screen.score_label.text = str(score)
 	if game_over_screen.highscore_label:
-		game_over_screen.highscore_label.text = "Best: %d" % high_score
+		game_over_screen.highscore_label.text = str(high_score)
 
 
 func shift_theme(direction: String = "Right") -> void:
@@ -128,12 +128,12 @@ func _on_button_pressed(button: BaseButton) -> void:
 		"MusicButton":
 			AudioManager.set_music_enabled(!AudioManager.is_music_enabled())
 			button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
-			settings_screen.music_label.text = "Music " + ("On" if AudioManager.is_music_enabled() else "Off")
+			settings_screen.music_label.text = "MUSIC_" + ("ON" if AudioManager.is_music_enabled() else "OFF")
 			Settings.save_settings()
 		"SoundButton":
 			AudioManager.set_sound_enabled(!AudioManager.is_sound_enabled())
 			button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
-			settings_screen.sound_label.text = "Sound " + ("On" if AudioManager.is_sound_enabled() else "Off")
+			settings_screen.sound_label.text = "SOUND_" + ("ON" if AudioManager.is_sound_enabled() else "OFF")
 			Settings.save_settings()
 		"ThemeLeftButton":
 			shift_theme("Left")
@@ -141,10 +141,10 @@ func _on_button_pressed(button: BaseButton) -> void:
 			shift_theme("Right")
 		"AdsButton":
 			# TODO: Implement ads
-			if button.text == "Disable Ads":
-				button.text = "Enable Ads"
+			if button.text == tr("DISABLE_ADS"):
+				button.text = tr("ENABLE_ADS")
 			else:
-				button.text = "Disable Ads"
+				button.text = tr("DISABLE_ADS")
 			Settings.save_settings()
 
 		# Game Over Screen

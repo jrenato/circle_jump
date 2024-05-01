@@ -46,7 +46,7 @@ theme_override_constants/separation = 120
 
 [node name="PauseLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Paused"
+text = "PAUSED"
 label_settings = SubResource("LabelSettings_tp6g6")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -71,7 +71,7 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Home"
+text = "HOME"
 label_settings = SubResource("LabelSettings_5ckny")
 horizontal_alignment = 1
 
@@ -88,6 +88,6 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Settings"
+text = "SETTINGS"
 label_settings = SubResource("LabelSettings_f0b48")
 horizontal_alignment = 1

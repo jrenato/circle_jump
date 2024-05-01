@@ -9,7 +9,7 @@
 font = ExtResource("2_s1d1e")
 font_size = 64
 
-[sub_resource type="LabelSettings" id="LabelSettings_vehux"]
+[sub_resource type="LabelSettings" id="LabelSettings_iqf1u"]
 font = ExtResource("2_s1d1e")
 font_size = 32
 
@@ -26,8 +26,8 @@ offset_right = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_orav4")
-score_label = NodePath("MarginContainer/VBoxContainer/LabelsContainer/ScoreLabel")
-highscore_label = NodePath("MarginContainer/VBoxContainer/LabelsContainer/HighScoreLabel")
+score_label = NodePath("MarginContainer/VBoxContainer/PointsGridContainer/ScorePointsLabel")
+highscore_label = NodePath("MarginContainer/VBoxContainer/PointsGridContainer/BestPointsLabel")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -49,25 +49,46 @@ theme_override_constants/separation = 150
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Game Over"
+text = "GAME_OVER"
 label_settings = SubResource("LabelSettings_tp6g6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LabelsContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="PointsGridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 70
+theme_override_constants/v_separation = 20
+columns = 2
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/LabelsContainer"]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/PointsGridContainer"]
 layout_mode = 2
-text = "Score: 0"
-label_settings = SubResource("LabelSettings_vehux")
+text = "SCORE"
+label_settings = SubResource("LabelSettings_iqf1u")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HighScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/LabelsContainer"]
+[node name="ScorePointsLabel" type="Label" parent="MarginContainer/VBoxContainer/PointsGridContainer"]
 layout_mode = 2
-text = "Best: 0"
-label_settings = SubResource("LabelSettings_vehux")
+text = "0"
+label_settings = SubResource("LabelSettings_iqf1u")
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BestLabel" type="Label" parent="MarginContainer/VBoxContainer/PointsGridContainer"]
+layout_mode = 2
+text = "BEST"
+label_settings = SubResource("LabelSettings_iqf1u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BestPointsLabel" type="Label" parent="MarginContainer/VBoxContainer/PointsGridContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_iqf1u")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buttons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -87,7 +108,7 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Home"
+text = "HOME"
 label_settings = SubResource("LabelSettings_qrof7")
 horizontal_alignment = 1
 
@@ -104,6 +125,6 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Retry"
+text = "RETRY"
 label_settings = SubResource("LabelSettings_qrof7")
 horizontal_alignment = 1

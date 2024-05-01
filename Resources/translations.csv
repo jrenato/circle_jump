@@ -1,0 +1,23 @@
+keys,en,pt_BR
+START,Start,Iniciar
+SETTINGS,Settings,Configurações
+ABOUT,About,Sobre
+QUIT,Quit,Sair
+MUSIC_ON,Music On,Música Ligada
+MUSIC_OFF,Music Off,Música Desligada
+SOUND_ON,Sound On,Som Ligado
+SOUND_OFF,Sound Off,Som Desligado
+SELECT_THEME, Select Theme, Selecione o Tema
+ENABLE_ADS,Enable Ads,Ativar Anúncios
+DISABLE_ADS,Disable Ads,Desativar Anúncios
+RETURN,Return,Voltar
+GO,Go!,Já!
+NEW_RECORD,New Record!,Novo Recorde!
+LEVEL,Level {level},Nível {level}
+GAME_OVER,Game Over,Fim de Jogo
+HOME,Home,Início
+RETRY,Retry,Tentar Novamente
+SCORE,Score,Pontuação
+BEST,Best,Recorde
+PAUSED,Paused,Pausado
+LICENSE_INFO,License Information,Informação de Licença

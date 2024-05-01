@@ -50,6 +50,10 @@ window/handheld/orientation=1
 
 enabled=PackedStringArray("res://addons/admob/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg")
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Resources/translations.en.translation", "res://Resources/translations.pt_BR.translation")
+
 [rendering]
 
 textures/vram_compression/import_s3tc_bptc=true

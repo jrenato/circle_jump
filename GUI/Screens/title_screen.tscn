@@ -108,7 +108,7 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Start"
+text = "START"
 label_settings = SubResource("LabelSettings_f0b48")
 horizontal_alignment = 1
 
@@ -125,7 +125,7 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Settings"
+text = "SETTINGS"
 label_settings = SubResource("LabelSettings_f0b48")
 horizontal_alignment = 1
 
@@ -139,7 +139,7 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_5uhyx")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_21fqj")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_mctxr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mb7vj")
-text = "About"
+text = "ABOUT"
 
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
 layout_mode = 2
@@ -151,4 +151,4 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_5uhyx")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_21fqj")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_mctxr")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mb7vj")
-text = "Quit"
+text = "QUIT"

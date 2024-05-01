@@ -55,7 +55,7 @@ func new_game() -> void:
 	spawn_circle.call_deferred(start_position.position, true)
 
 	hud.show_hud()
-	hud.show_message("Go!")
+	hud.show_message("GO")
 	score = 0
 	bonus = 1
 	level = 1
@@ -72,7 +72,7 @@ func set_score(current_score: int, new_score: int) -> void:
 	hud.update_score(current_score, new_score)
 
 	if current_score + new_score > Settings.high_score and not new_high_score:
-		hud.show_message("New Record!")
+		hud.show_message("NEW_RECORD")
 		new_high_score = true
 
 
@@ -80,7 +80,7 @@ func set_score(current_score: int, new_score: int) -> void:
 func set_level() -> void:
 	if captured_circles > 0 and captured_circles % Settings.circles_per_level == 0:
 		level += 1
-		hud.show_message("Level %d" % level)
+		hud.show_message(tr("LEVEL").format({"level": level}))
 
 
 func spawn_jumper() -> void:
@@ -133,18 +133,15 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 func _on_jumper_died() -> void:
 	get_tree().call_group("circles", "implode")
 	hud.hide_hud()
-
-	score = 0
-	bonus = 1
+	
+	fade_music()
+	pause_rect.visible = false
 
 	if score > Settings.high_score:
 		Settings.high_score = score
 		Settings.save_high_score()
 
 	screens.game_over(score, Settings.high_score)
-	pause_rect.visible = false
-
-	fade_music()
 
 
 func _on_pause_resume_pressed() -> void:

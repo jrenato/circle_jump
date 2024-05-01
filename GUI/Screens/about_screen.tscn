@@ -54,13 +54,11 @@ texture = ExtResource("3_iggxy")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="AboutRichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("2_r6udv")
 bbcode_enabled = true
-text = "This game was made with the Godot Engine, and is based on [url=https://github.com/kidscancode/circle_jump]Circle Jump Source[/url]
-
-[center]Copyright © 2024 Karvalho
+text = "[center]Copyright © 2024 Karvalho
 
 [url=https://github.com/kidscancode/circle_jump/blob/master/LICENSE]License Information[/url][/center]"
 fit_content = true
@@ -80,8 +78,8 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Return"
+text = "RETURN"
 label_settings = SubResource("LabelSettings_qrof7")
 horizontal_alignment = 1
 
-[connection signal="meta_clicked" from="MarginContainer/VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
+[connection signal="meta_clicked" from="MarginContainer/VBoxContainer/AboutRichTextLabel" to="." method="_on_about_rich_text_label_meta_clicked"]

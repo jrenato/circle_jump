@@ -8,7 +8,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_tp6g6"]
 font = ExtResource("2_e8fij")
-font_size = 64
+font_size = 54
 
 [sub_resource type="LabelSettings" id="LabelSettings_roocj"]
 font = ExtResource("2_e8fij")
@@ -75,7 +75,7 @@ theme_override_constants/separation = 80
 
 [node name="SettingsLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Settings"
+text = "SETTINGS"
 label_settings = SubResource("LabelSettings_tp6g6")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -98,7 +98,7 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Music On"
+text = "MUSIC_ON"
 label_settings = SubResource("LabelSettings_roocj")
 horizontal_alignment = 1
 
@@ -115,7 +115,7 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Sound On"
+text = "SOUND_ON"
 label_settings = SubResource("LabelSettings_roocj")
 horizontal_alignment = 1
 
@@ -144,7 +144,7 @@ size_flags_vertical = 4
 
 [node name="ThemeNameLabel" type="Label" parent="MarginContainer/VBoxContainer/ThemeButtons/VBoxContainer"]
 layout_mode = 2
-text = "Select a Theme"
+text = "SELECT_THEME"
 label_settings = SubResource("LabelSettings_kxgcd")
 horizontal_alignment = 1
 
@@ -178,7 +178,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_3gqg5")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_v01tx")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_je2cb")
 disabled = true
-text = "Disable Ads"
+text = "DISABLE_ADS"
 
 [node name="BackButton" type="TextureButton" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
 layout_mode = 2
@@ -194,6 +194,6 @@ anchor_bottom = 1.0
 offset_top = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Return"
+text = "RETURN"
 label_settings = SubResource("LabelSettings_roocj")
 horizontal_alignment = 1
