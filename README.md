@@ -4,7 +4,7 @@ Based on the original [Circle Jump](https://github.com/kidscancode/circle_jump) 
 
 Some things were too outdated, and I replaced them completely, such as the circular counter on limited circles, originally drawn manually, now replaced with a circular progress bar.
 
-I also added new features missing from the original, such as:
+I also added features missing from the original, such as:
 
 * Pause and resume
 * Theme change
