@@ -100,7 +100,7 @@ func spawn_circle(circle_position: Variant = null, disable_points: bool = false)
 	var circle: Circle = circle_scene.instantiate()
 	add_child(circle)
 
-	circle.orbit_completed.connect(func(): bonus = 1)
+	circle.orbit_completed.connect(func(): bonus = clamp(floor(bonus / 2), 1, bonus))
 
 	if not circle_position:
 		circle_position = jumper.target.position + Vector2(randi_range(-150, 150), randi_range(-500, -400))
