@@ -76,7 +76,7 @@ func new_game() -> void:
 func set_score(current_score: int, new_score: int) -> void:
 	hud.update_score(current_score, new_score)
 
-	if current_score + new_score > Settings.high_score and not new_high_score:
+	if new_score > Settings.high_score and not new_high_score:
 		hud.show_message("NEW_RECORD")
 		new_high_score = true
 
@@ -124,7 +124,6 @@ func _on_jumper_captured(target_area: Area2D) -> void:
 	if not target_circle.silent_capture:
 		score += bonus
 		captured_circles += 1
-		#set_bonus(bonus + 1)
 		bonus += 1
 
 	# Updated the camera position
