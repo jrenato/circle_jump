@@ -60,7 +60,9 @@ theme_override_fonts/normal_font = ExtResource("2_r6udv")
 bbcode_enabled = true
 text = "[center]Copyright © 2024 Karvalho
 
-[url=https://github.com/kidscancode/circle_jump/blob/master/LICENSE]License Information[/url][/center]"
+[url=https://github.com/jrenato/circle_jump]SOURCE_CODE[/url]
+
+[url=https://github.com/jrenato/circle_jump/blob/master/LICENSE]LICENSE_INFO[/url][/center]"
 fit_content = true
 
 [node name="HomeButton" type="TextureButton" parent="MarginContainer/VBoxContainer" groups=["buttons"]]
