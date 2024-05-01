@@ -53,8 +53,6 @@ func _ready() -> void:
 
 	update_theme()
 
-	# Randomize the orbit direction
-	rotation_speed *= pow(-1, randi() % 2)
 
 func update_theme() -> void:
 	# Update the theme colors
@@ -67,6 +65,11 @@ func update_theme() -> void:
 func init_circle(circle_position: Vector2, level: int, first_circle: bool = false) -> void:
 	position = circle_position
 	radius = 100
+
+	rotation_speed = clampf(level, 2.0, PI)
+
+	# Randomize the orbit direction
+	rotation_speed *= pow(-1, randi() % 2)
 
 	silent_capture = first_circle
 
