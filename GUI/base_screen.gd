@@ -2,6 +2,7 @@ class_name BaseScreen extends Control
 
 @export var score_label: Label
 @export var highscore_label: Label
+@export var about_label: RichTextLabel
 @export var music_label: Label
 @export var sound_label: Label
 @export var theme_label: Label
@@ -11,6 +12,13 @@ var fadeout_duration: float = 0.5
 
 func _ready() -> void:
 	position.x = 500
+	if about_label:
+		about_label.text = "[center]Copyright © 2024 Karvalho
+
+[url=https://github.com/jrenato/circle_jump]%s[/url]
+
+[url=https://github.com/jrenato/circle_jump/blob/master/LICENSE]%s[/url]
+[/center]" % [tr("SOURCE_CODE"), tr("LICENSE_INFO")]
 
 
 func appear() -> Tween:

@@ -11,7 +11,7 @@ SELECT_THEME, Select Theme, Selecione o Tema
 ENABLE_ADS,Enable Ads,Ativar Anúncios
 DISABLE_ADS,Disable Ads,Desativar Anúncios
 RETURN,Return,Voltar
-GO,Go!,Já!
+GO,Go!,Vai!
 NEW_RECORD,New Record!,Novo Recorde!
 LEVEL,Level {level},Nível {level}
 GAME_OVER,Game Over,Fim de Jogo
@@ -20,4 +20,5 @@ RETRY,Retry,Tentar Novamente
 SCORE,Score,Pontuação
 BEST,Best,Recorde
 PAUSED,Paused,Pausado
-LICENSE_INFO,License Information,Informação de Licença
+LICENSE_INFO,License Information,Licença
+SOURCE_CODE,Source Code,Código Fonte
