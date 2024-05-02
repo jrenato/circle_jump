@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://g5cp30neerml"]
+[gd_scene load_steps=8 format=3 uid="uid://g5cp30neerml"]
 
 [ext_resource type="Script" path="res://GUI/screens.gd" id="1_408sc"]
 [ext_resource type="PackedScene" uid="uid://b6dtin1fpqpjg" path="res://GUI/Screens/title_screen.tscn" id="1_jlr0e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmx26yj88sgun" path="res://GUI/Screens/game_over_screen.tscn" id="3_1rdmp"]
 [ext_resource type="PackedScene" uid="uid://bgidc4aywtba6" path="res://GUI/Screens/about_screen.tscn" id="5_rn2iy"]
 [ext_resource type="PackedScene" uid="uid://b6obrlqt1wapo" path="res://GUI/Screens/pause_screen.tscn" id="6_w4uun"]
+[ext_resource type="PackedScene" uid="uid://cyjgkhe1kiiqu" path="res://GUI/Screens/ad_screen.tscn" id="7_u1hox"]
 
 [node name="Screens" type="CanvasLayer"]
 process_mode = 3
@@ -24,4 +25,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="PauseScreen" parent="." instance=ExtResource("6_w4uun")]
+unique_name_in_owner = true
+
+[node name="AdScreen" parent="." instance=ExtResource("7_u1hox")]
 unique_name_in_owner = true

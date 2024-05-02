@@ -30,6 +30,7 @@ var level: int = 1:
 		if level > 1:
 			hud.show_message(tr("LEVEL").format({"level": level}))
 
+
 @onready var screens: CanvasLayer = %Screens
 @onready var hud: Control = %HUD
 @onready var start_position: Marker2D = %StartPosition
