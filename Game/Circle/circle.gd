@@ -66,7 +66,8 @@ func init_circle(circle_position: Vector2, level: int, first_circle: bool = fals
 	position = circle_position
 	radius = 100
 
-	rotation_speed = clampf(level, 2.0, PI)
+	# TODO: Should this really change based on the level?
+	# rotation_speed = clampf(level, 2.0, PI)
 
 	# Randomize the orbit direction
 	rotation_speed *= pow(-1, randi() % 2)
