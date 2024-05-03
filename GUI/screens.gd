@@ -16,15 +16,14 @@ var current_screen: BaseScreen = null
 
 var themes: Array[String]
 
-var rewarded_interstitial_ad : RewardedInterstitialAd
-var rewarded_interstitial_ad_load_callback := RewardedInterstitialAdLoadCallback.new()
-var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
+var ad_enabled: bool = false
 
 @onready var title_screen: BaseScreen = %TitleScreen
 @onready var pause_screen: BaseScreen = %PauseScreen
 @onready var settings_screen: BaseScreen = %SettingsScreen
 @onready var game_over_screen: BaseScreen = %GameOverScreen
 @onready var about_screen: BaseScreen = %AboutScreen
+@onready var ad_timer: Timer = %AdTimer
 
 
 func _ready() -> void:
@@ -70,6 +69,13 @@ func change_screen(new_screen: BaseScreen) -> void:
 	if current_screen:
 		var appear_tween: Tween = current_screen.appear()
 		await(appear_tween.finished)
+
+		# Show ad if in Game Over Screen, and no more plays before ad
+		if current_screen == game_over_screen and ad_enabled:
+			Settings.show_interstitial_ad()
+			ad_enabled = false
+			ad_timer.start()
+
 		# Only after the screen is fully appeared can we enable the buttons
 		get_tree().call_group("buttons", "set_disabled", false)
 
@@ -186,3 +192,8 @@ func _notification(what: int) -> void:
 	elif what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
 		# TODO: Implement pause game
 		pass
+
+
+func _on_ad_timer_timeout() -> void:
+	if not ad_enabled:
+		ad_enabled = true
