@@ -25,17 +25,9 @@ var on_user_earned_reward_listener := OnUserEarnedRewardListener.new()
 @onready var settings_screen: BaseScreen = %SettingsScreen
 @onready var game_over_screen: BaseScreen = %GameOverScreen
 @onready var about_screen: BaseScreen = %AboutScreen
-@onready var ad_screen: BaseScreen = %AdScreen
 
 
 func _ready() -> void:
-	MobileAds.initialize()
-	on_user_earned_reward_listener.on_user_earned_reward = func(rewarded_item : RewardedItem):
-		print("on_user_earned_reward, rewarded_item: rewarded", rewarded_item.amount, rewarded_item.type)
-		if rewarded_interstitial_ad:
-			rewarded_interstitial_ad.destroy()
-			rewarded_interstitial_ad = null
-
 	Settings.theme_changed.connect(_on_theme_changed)
 
 	register_buttons()
@@ -167,7 +159,6 @@ func _on_button_pressed(button: BaseButton) -> void:
 			await(get_tree().create_timer(fadeout_duration).timeout)
 			start_game.emit()
 
-
 		# Pause Screen 
 		"PauseSettingsButton":
 			change_screen(settings_screen)
@@ -195,22 +186,3 @@ func _notification(what: int) -> void:
 	elif what == NOTIFICATION_WM_WINDOW_FOCUS_OUT:
 		# TODO: Implement pause game
 		pass
-
-func load_interstitial_ad() -> void:
-	var unit_id : String
-	if OS.get_name() == "Android":
-		unit_id = "ca-app-pub-3940256099942544/5354046379"
-	elif OS.get_name() == "iOS":
-		unit_id = "ca-app-pub-3940256099942544/6978759866"
-	
-	RewardedInterstitialAdLoader.new().load(unit_id, AdRequest.new(), rewarded_interstitial_ad_load_callback)
-
-
-func on_rewarded_interstitial_ad_failed_to_load(adError : LoadAdError) -> void:
-	print(adError.message)
-
-
-func on_rewarded_interstitial_ad_loaded(rewarded_interstitial_ad : RewardedInterstitialAd) -> void:
-	self.rewarded_interstitial_ad = rewarded_interstitial_ad
-	if rewarded_interstitial_ad:
-		rewarded_interstitial_ad.show(on_user_earned_reward_listener)
