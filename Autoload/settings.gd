@@ -18,6 +18,8 @@ var theme_name: String:
 		theme_name = value
 		update_theme()
 
+var ads_enabled: bool = true
+
 var interstitial_ad : InterstitialAd
 var interstitial_ad_load_callback := InterstitialAdLoadCallback.new()
 
@@ -28,9 +30,10 @@ func _ready() -> void:
 	load_settings()
 	theme_changed.emit()
 
-	MobileAds.initialize()
-	interstitial_ad_load_callback.on_ad_failed_to_load = on_interstitial_ad_failed_to_load
-	interstitial_ad_load_callback.on_ad_loaded = on_interstitial_ad_loaded
+	if ads_enabled and OS.get_name() in ["Android", "iOS"]:
+		MobileAds.initialize()
+		interstitial_ad_load_callback.on_ad_failed_to_load = on_interstitial_ad_failed_to_load
+		interstitial_ad_load_callback.on_ad_loaded = on_interstitial_ad_loaded
 
 
 func load_default_theme() -> void:
@@ -82,7 +85,7 @@ func save_settings() -> void:
 		"theme_name": theme_name,
 		"music_enabled": AudioManager.is_music_enabled(),
 		"sound_enabled": AudioManager.is_sound_enabled(),
-		"enable_ads": false # TODO: Implement ad configuration
+		"ads_enabled": ads_enabled
 	}
 
 	var json_string = JSON.stringify(settings_dict)
@@ -99,10 +102,16 @@ func load_settings() -> void:
 	theme_name = settings_dict["theme_name"]
 	AudioManager.set_music_enabled(settings_dict["music_enabled"])
 	AudioManager.set_sound_enabled(settings_dict["sound_enabled"])
-	# TODO: Implement ad configuration
+	if "ads_enabled" in settings_dict:
+		ads_enabled = settings_dict["ads_enabled"] 
+	else:
+		ads_enabled = true
 
 
 func load_interstitial_ad() -> void:
+	if not ads_enabled or OS.get_name() not in ["Android", "iOS"]:
+		return
+
 	var unit_id : String
 	if OS.get_name() == "Android":
 		unit_id = "ca-app-pub-3940256099942544/1033173712"
@@ -118,6 +127,9 @@ func load_interstitial_ad() -> void:
 
 
 func show_interstitial_ad():
+	if not ads_enabled or OS.get_name() not in ["Android", "iOS"]:
+		return
+
 	if interstitial_ad:
 		interstitial_ad.show()
 

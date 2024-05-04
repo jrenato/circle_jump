@@ -76,7 +76,8 @@ func new_game() -> void:
 
 	AudioManager.music_volume = 1.0
 	AudioManager.play_music("LightPuzzle")
-	Settings.load_interstitial_ad()
+	if Settings.ads_enabled and OS.get_name() in ["Android", "iOS"]:
+		Settings.load_interstitial_ad()
 
 
 func set_score(current_score: int, new_score: int) -> void:

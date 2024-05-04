@@ -16,7 +16,7 @@ var current_screen: BaseScreen = null
 
 var themes: Array[String]
 
-var ad_enabled: bool = false
+var should_display_ad: bool = false
 
 @onready var title_screen: BaseScreen = %TitleScreen
 @onready var pause_screen: BaseScreen = %PauseScreen
@@ -45,12 +45,13 @@ func register_buttons() -> void:
 
 		match button.name:
 			"AdsButton":
-				# TODO: Implement ads
-				pass
+				if Settings.ads_enabled:
+					button.text = tr("DISABLE_ADS")
+				else:
+					button.text = tr("ENABLE_ADS")
 			"MusicButton":
 				button.texture_normal = music_buttons[AudioManager.is_music_enabled()]
 				settings_screen.music_label.text = "MUSIC_" + ("ON" if AudioManager.is_music_enabled() else "OFF")
-
 			"SoundButton":
 				button.texture_normal = sound_buttons[AudioManager.is_sound_enabled()]
 				settings_screen.sound_label.text = "SOUND_" + ("ON" if AudioManager.is_sound_enabled() else "OFF")
@@ -71,10 +72,11 @@ func change_screen(new_screen: BaseScreen) -> void:
 		await(appear_tween.finished)
 
 		# Show ad if in Game Over Screen, and no more plays before ad
-		if current_screen == game_over_screen and ad_enabled:
-			Settings.show_interstitial_ad()
-			ad_enabled = false
-			ad_timer.start()
+		if current_screen == game_over_screen and should_display_ad:
+			if Settings.ads_enabled and OS.get_name() in ["Android", "iOS"]:
+				Settings.show_interstitial_ad()
+				should_display_ad = false
+				ad_timer.start()
 
 		# Only after the screen is fully appeared can we enable the buttons
 		get_tree().call_group("buttons", "set_disabled", false)
@@ -151,8 +153,12 @@ func _on_button_pressed(button: BaseButton) -> void:
 		"AdsButton":
 			# TODO: Implement ads
 			if button.text == tr("DISABLE_ADS"):
+				# Disable ads
+				Settings.ads_enabled = false
 				button.text = tr("ENABLE_ADS")
 			else:
+				# Enable ads
+				Settings.ads_enabled = true
 				button.text = tr("DISABLE_ADS")
 			Settings.save_settings()
 
@@ -194,5 +200,5 @@ func _notification(what: int) -> void:
 
 
 func _on_ad_timer_timeout() -> void:
-	if not ad_enabled:
-		ad_enabled = true
+	if not should_display_ad and Settings.ads_enabled and OS.get_name() in ["Android", "iOS"]:
+		should_display_ad = true
