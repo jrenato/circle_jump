@@ -13,8 +13,8 @@ I also added features missing from the original, such as:
 Check list:
 
 - [x] Add pause and resume
-  - [ ] Timer before resume
+  - [x] Timer before resume
 - [x] Add theme change
 - [x] Add translation support
-- [ ] Add updated Admob support
-- [ ] Player profiles for high scores
+- [x] Add updated Admob support
+- [ ] Player profiles for high scores (maybe?)
