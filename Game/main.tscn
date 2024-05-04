@@ -78,3 +78,10 @@ position = Vector2(240, 630)
 offset = Vector2(0, -200)
 position_smoothing_enabled = true
 position_smoothing_speed = 7.0
+
+[node name="ResumeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+one_shot = true
+
+[connection signal="timeout" from="ResumeTimer" to="." method="_on_resume_timer_timeout"]

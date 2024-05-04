@@ -83,7 +83,6 @@ func change_screen(new_screen: BaseScreen) -> void:
 func pause_resume_game() -> void:
 	if get_tree().paused:
 		change_screen(null)
-		get_tree().paused = false
 	else:
 		change_screen(pause_screen)
 		get_tree().paused = true

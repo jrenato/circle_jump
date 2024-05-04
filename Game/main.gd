@@ -4,6 +4,10 @@ extends Node2D
 @export var jumper_scene: PackedScene
 
 var jumper: Jumper
+var resume_countdown: int
+
+@onready var resume_timer: Timer = %ResumeTimer
+
 
 var score: int :
 	set(new_score):
@@ -46,7 +50,7 @@ func _ready() -> void:
 
 	update_theme()
 
-	hud.pause_resume_game.connect(_on_pause_resume_pressed)
+	hud.pause_resume_game.connect(_on_pause_resume_game)
 	hud.hide_hud()
 	pause_rect.visible = false
 
@@ -154,9 +158,12 @@ func _on_jumper_died() -> void:
 	bonus = 1
 
 
-func _on_pause_resume_pressed() -> void:
+func _on_pause_resume_game() -> void:
 	if get_tree().paused:
 		pause_rect.visible = false
+		# Set resume countdown
+		resume_countdown = 3
+		_on_resume_timer_timeout()
 	else:
 		pause_rect.visible = true
 	screens.pause_resume_game()
@@ -164,3 +171,14 @@ func _on_pause_resume_pressed() -> void:
 
 func _on_theme_changed() -> void:
 	update_theme()
+
+
+func _on_resume_timer_timeout() -> void:
+	if resume_countdown > 0:
+		# Update resume countdown
+		hud.show_message(str(resume_countdown))
+		resume_countdown -= 1
+		resume_timer.start()
+	else:
+		# Unpause the game
+		get_tree().paused = false
