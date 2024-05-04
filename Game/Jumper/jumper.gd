@@ -17,6 +17,7 @@ var blank_trail: Array[Vector2]
 
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var trail_line: Line2D = %TrailLine2D
+@onready var off_screen_timer: Timer = %OffScreenTimer
 
 
 func _ready() -> void:
@@ -94,9 +95,18 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	if not target:
-		die()
+	if not target and off_screen_timer.is_stopped():
+		off_screen_timer.start()
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	off_screen_timer.stop()
 
 
 func _on_theme_changed() -> void:
 	update_theme()
+
+
+func _on_off_screen_timer_timeout() -> void:
+	if not target:
+		die()
