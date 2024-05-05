@@ -1,11 +1,329 @@
-[gd_scene load_steps=14 format=3 uid="uid://cj7a4lchc8gh8"]
+[gd_scene load_steps=57 format=3 uid="uid://cj7a4lchc8gh8"]
 
 [ext_resource type="Script" path="res://Game/Circle/circle.gd" id="1_1qqjh"]
 [ext_resource type="Texture2D" uid="uid://d2cyw3pwjae06" path="res://Assets/Images/circle_1.png" id="1_mknme"]
+[ext_resource type="Script" path="res://addons/planet2d/planet_layers.gd" id="2_2d0v2"]
+[ext_resource type="Script" path="res://addons/planet2d/planet_layer.gd" id="3_ii14l"]
+[ext_resource type="Shader" path="res://addons/planet2d/planet.gdshader" id="4_d1meo"]
 [ext_resource type="Texture2D" uid="uid://bt7fwxlj42i5q" path="res://Assets/Images/circle_3.png" id="4_v6km0"]
+
+[sub_resource type="Gradient" id="Gradient_7or45"]
+offsets = PackedFloat32Array(0, 0.0724638, 0.557971, 1)
+colors = PackedColorArray(1, 0.853507, 0.638991, 1, 0.857104, 0.88878, 0.47409, 1, 0.432067, 0.65027, 9.62615e-07, 1, 0.59077, 0.308612, 3.85046e-07, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_knca4"]
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yxbs4"]
+seamless = true
+color_ramp = SubResource("Gradient_7or45")
+noise = SubResource("FastNoiseLite_knca4")
+
+[sub_resource type="Gradient" id="Gradient_0wtyh"]
+offsets = PackedFloat32Array(0, 0.0724638, 0.563725, 1)
+colors = PackedColorArray(1, 0.853507, 0.638991, 1, 0.977183, 0.852522, 0.095893, 1, 0.973813, 0.315955, 5.77569e-07, 1, 0.59077, 0.308612, 3.85046e-07, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ey4nw"]
+seed = 10
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7q4cv"]
+seamless = true
+color_ramp = SubResource("Gradient_0wtyh")
+noise = SubResource("FastNoiseLite_ey4nw")
+
+[sub_resource type="Gradient" id="Gradient_66brs"]
+offsets = PackedFloat32Array(0, 0.0784314, 0.558824, 1)
+colors = PackedColorArray(0.82517, 0.878141, 1, 1, 0.708546, 0.878663, 1, 1, 0.111193, 0.58019, 1, 1, 0.112101, 0.247072, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j7w65"]
+seed = 20
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2vku7"]
+seamless = true
+color_ramp = SubResource("Gradient_66brs")
+noise = SubResource("FastNoiseLite_j7w65")
+
+[sub_resource type="Gradient" id="Gradient_imf5g"]
+offsets = PackedFloat32Array(0.311594, 0.463768, 0.478261)
+colors = PackedColorArray(0, 0.0548293, 0.401801, 1, 0, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xk0ej"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vu4l7"]
+seamless = true
+color_ramp = SubResource("Gradient_imf5g")
+noise = SubResource("FastNoiseLite_xk0ej")
+
+[sub_resource type="Gradient" id="Gradient_k8mlj"]
+offsets = PackedFloat32Array(0.303922, 0.463768, 0.478261)
+colors = PackedColorArray(1, 0, 0.0117647, 1, 1, 0.756598, 0.21573, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ordf"]
+seed = 10
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xhk4k"]
+seamless = true
+color_ramp = SubResource("Gradient_k8mlj")
+noise = SubResource("FastNoiseLite_2ordf")
+
+[sub_resource type="Gradient" id="Gradient_oxgsc"]
+offsets = PackedFloat32Array(0.29902, 0.463768, 0.478261)
+colors = PackedColorArray(0.798526, 0.87625, 0.989161, 1, 0.438339, 0.649569, 0.992499, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r33di"]
+seed = 20
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aeklx"]
+seamless = true
+color_ramp = SubResource("Gradient_oxgsc")
+noise = SubResource("FastNoiseLite_r33di")
+
+[sub_resource type="Gradient" id="Gradient_hqkgn"]
+offsets = PackedFloat32Array(0.702899, 0.927536, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wle3r"]
+seed = 180473
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rceyn"]
+width = 520
+height = 520
+seamless = true
+color_ramp = SubResource("Gradient_hqkgn")
+noise = SubResource("FastNoiseLite_wle3r")
+
+[sub_resource type="Gradient" id="Gradient_t36jg"]
+offsets = PackedFloat32Array(0.702899, 0.927536, 1)
+colors = PackedColorArray(0.42477, 0.562889, 0.383602, 0, 0.380392, 0.47451, 0.0235294, 1, 0.227829, 0.32154, 0.0171991, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4h1gl"]
+seed = 190473
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4hbto"]
+width = 520
+height = 520
+seamless = true
+color_ramp = SubResource("Gradient_t36jg")
+noise = SubResource("FastNoiseLite_4h1gl")
+
+[sub_resource type="Gradient" id="Gradient_kmka3"]
+offsets = PackedFloat32Array(0.702899, 0.926471, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.14629, 0.0660041, 0.0680245, 1, 0.288489, 0.199169, 0.212167, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7m2ww"]
+seed = 180473
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_twces"]
+width = 520
+height = 520
+seamless = true
+color_ramp = SubResource("Gradient_kmka3")
+noise = SubResource("FastNoiseLite_7m2ww")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3iodi"]
 radius = 134.034
+
+[sub_resource type="Shader" id="Shader_gpd5v"]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+const float PI2 = PI / 2.0;
+const vec3 UP = vec3(0.0, 0.0, 1.0);
+
+uniform vec2 texture_scale = vec2(0.5, 0.5);
+uniform vec2 texture_offset = vec2(0.0, 0.0);
+
+uniform vec3 atmosphere_color = vec3(1.0, 1.0, 1.0);
+uniform float atmosphere_intensity = 0.0;
+
+uniform vec3 light_color = vec3(1.0, 1.0, 1.0);
+uniform vec3 light_direction = vec3(0.0, 0.0, 1.0);
+uniform float light_minimum = 0.0;
+uniform float light_maximum = 1.0;
+
+uniform vec3 specular_color = vec3(1.0, 1.0, 1.0);
+uniform float specular_intensity = 0.1;
+uniform float specular_shininess = 1.0;
+
+uniform float fade = 0.0;
+
+uniform bool pixelize_enabled = false;
+uniform float pixelize_scale = 1.0;
+
+float z_from_xy(vec2 vector) {
+	return sqrt(1.0 - vector.x * vector.x - vector.y * vector.y);
+}
+
+vec2 transform_uv(vec2 uv, vec2 texel) {
+	// Center uv coordinates
+	uv = (uv - vec2(0.5, 0.5)) * 2.0;
+	// Quantize UV resolution
+	vec2 resolution = (1.0 / texel) * pixelize_scale;
+	return mix(uv, round(uv * resolution) / resolution, float(pixelize_enabled));
+}
+
+vec2 spherical_distort(vec2 uv) {
+	// Spherical Displacement
+	float radius = length(uv);
+	float displacement_scale = (radius != 0.0 ? asin(radius) / radius : 0.0) / PI2;
+	vec2 displacement = uv * displacement_scale;
+	return (displacement + texture_offset) * texture_scale;
+}
+
+mat3 generate_normal_matrix(vec3 normal) {
+	vec3 T = normalize(cross(normal, vec3(normal.z, -normal.y, -normal.x)));
+	vec3 B = normalize(cross(normal, T));
+	vec3 N = normal;
+	return mat3(T, B, N);
+}
+
+vec3 atmospherics(vec3 color, vec3 normal) {
+	// Atmospherics
+	float atmospheric_coefficient = 1.0 - max(dot(normal, UP), 0.0);
+	float atmospheric_density = mix(atmosphere_intensity, 1.0, atmospheric_coefficient);
+	
+	return mix(color, atmosphere_color, atmospheric_density);
+}
+
+vec3 get_diffuse(vec3 normal, vec3 light_normal, vec3 color) {
+	// Diffuse
+	float light_dot = max(dot(normal, light_normal), 0.0);
+	float diffuse_coefficient = mix(light_minimum, light_maximum, light_dot);
+	return (color * diffuse_coefficient) * light_color;
+}
+
+vec3 get_specular(vec3 normal, vec3 light_normal, float shininess) {
+	// Specular
+	shininess = mix(1.0, specular_shininess * specular_shininess, shininess);
+	float reflect_dot = dot(reflect(-light_normal, normal), UP);
+	float specular_coefficient = specular_intensity * pow(max(0.0, reflect_dot), shininess);
+	return (specular_color * specular_coefficient) * light_color;
+}
+
+void fragment() {
+	vec2 uv = transform_uv(UV, TEXTURE_PIXEL_SIZE);
+	vec3 normal = vec3(uv, z_from_xy(uv));
+	float radius = length(uv);
+
+	vec3 light_normal = normalize(light_direction);
+
+	// Spherical Displacement
+	vec2 displaced_uv = spherical_distort(uv);
+	
+	// Get inputs from samplers
+	vec4 input_color = texture(TEXTURE, displaced_uv);
+	vec4 input_shininess = texture(SPECULAR_SHININESS_TEXTURE, displaced_uv);
+	vec3 input_normal = texture(NORMAL_TEXTURE, displaced_uv).xyz * 2.0 - 1.0;
+	input_normal.xy = -input_normal.yx;
+	
+	// Adjust Normal to Normal Map
+	mat3 normal_matrix = generate_normal_matrix(normal);
+	vec3 displaced_normal = normal_matrix * input_normal;
+	
+	float light_dot = smoothstep(-0.4, 0.0, dot(normal, light_normal));
+	float global_light = mix(light_minimum, light_maximum, light_dot);
+	
+	vec3 diffuse = get_diffuse(displaced_normal, light_normal, input_color.rgb);
+	vec3 specular = get_specular(displaced_normal, light_normal, input_shininess.r);
+
+	COLOR.rgb = (diffuse + specular) * global_light;
+	
+	float fade_texels = length(TEXTURE_PIXEL_SIZE) * fade;
+	float alpha = 1.0 - smoothstep(1.0 - fade_texels, 1.0, radius);
+	COLOR.a = alpha * input_color.a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ook7y"]
+shader = SubResource("Shader_gpd5v")
+shader_parameter/texture_scale = Vector2(0.5, 0.5)
+shader_parameter/texture_offset = Vector2(2.676, 0)
+shader_parameter/atmosphere_color = Vector3(1, 1, 1)
+shader_parameter/atmosphere_intensity = 0.1
+shader_parameter/light_color = Vector3(1, 1, 1)
+shader_parameter/light_direction = Vector3(0.771, 0, 0.637)
+shader_parameter/light_minimum = 0.0
+shader_parameter/light_maximum = 1.0
+shader_parameter/specular_color = Vector3(1, 1, 1)
+shader_parameter/specular_intensity = 0.2
+shader_parameter/specular_shininess = 1.0
+shader_parameter/fade = 1.0
+shader_parameter/pixelize_enabled = false
+shader_parameter/pixelize_scale = 1.0
+
+[sub_resource type="Gradient" id="Gradient_7hn64"]
+offsets = PackedFloat32Array(0, 0.0724638, 0.557971, 1)
+colors = PackedColorArray(1, 0.853507, 0.638991, 1, 0.857104, 0.88878, 0.47409, 1, 0.432067, 0.65027, 9.62615e-07, 1, 0.59077, 0.308612, 3.85046e-07, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_euutq"]
+seed = 1
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jq2rd"]
+seamless = true
+color_ramp = SubResource("Gradient_7hn64")
+noise = SubResource("FastNoiseLite_euutq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k07qw"]
+shader = SubResource("Shader_gpd5v")
+shader_parameter/texture_scale = Vector2(0.5, 0.5)
+shader_parameter/texture_offset = Vector2(2.676, 0)
+shader_parameter/atmosphere_color = Vector3(1, 1, 1)
+shader_parameter/atmosphere_intensity = 0.1
+shader_parameter/light_color = Vector3(1, 1, 1)
+shader_parameter/light_direction = Vector3(0.771, 0, 0.637)
+shader_parameter/light_minimum = 0.0
+shader_parameter/light_maximum = 1.0
+shader_parameter/specular_color = Vector3(1, 1, 1)
+shader_parameter/specular_intensity = 0.66
+shader_parameter/specular_shininess = 32.88
+shader_parameter/fade = 1.0
+shader_parameter/pixelize_enabled = false
+shader_parameter/pixelize_scale = 1.0
+
+[sub_resource type="Gradient" id="Gradient_xsq6m"]
+offsets = PackedFloat32Array(0.311594, 0.463768, 0.478261)
+colors = PackedColorArray(0, 0.0548293, 0.401801, 1, 0, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yk3l5"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gjuv2"]
+seamless = true
+color_ramp = SubResource("Gradient_xsq6m")
+noise = SubResource("FastNoiseLite_yk3l5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jvgtc"]
+shader = ExtResource("4_d1meo")
+shader_parameter/texture_scale = Vector2(0.3, 0.8)
+shader_parameter/texture_offset = Vector2(2.676, 0)
+shader_parameter/atmosphere_color = Vector3(1, 1, 1)
+shader_parameter/atmosphere_intensity = 0.1
+shader_parameter/light_color = Vector3(1, 1, 1)
+shader_parameter/light_direction = Vector3(0.771, 0, 0.637)
+shader_parameter/light_minimum = 0.0
+shader_parameter/light_maximum = 1.0
+shader_parameter/specular_color = Vector3(1, 1, 1)
+shader_parameter/specular_intensity = 0.2
+shader_parameter/specular_shininess = 1.0
+shader_parameter/fade = 1.0
+shader_parameter/pixelize_enabled = false
+shader_parameter/pixelize_scale = 1.0
+
+[sub_resource type="Gradient" id="Gradient_pxrf6"]
+offsets = PackedFloat32Array(0.702899, 0.927536, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s66g1"]
+seed = 180473
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k4g0g"]
+width = 520
+height = 520
+seamless = true
+color_ramp = SubResource("Gradient_pxrf6")
+noise = SubResource("FastNoiseLite_s66g1")
 
 [sub_resource type="Shader" id="Shader_ec12e"]
 code = "shader_type canvas_item;
@@ -191,13 +509,59 @@ font_size = 42
 
 [node name="Circle" type="Area2D" groups=["circles"]]
 script = ExtResource("1_1qqjh")
+planet_textures = Array[Texture2D]([SubResource("NoiseTexture2D_yxbs4"), SubResource("NoiseTexture2D_7q4cv"), SubResource("NoiseTexture2D_2vku7")])
+water_textures = Array[Texture2D]([SubResource("NoiseTexture2D_vu4l7"), SubResource("NoiseTexture2D_xhk4k"), SubResource("NoiseTexture2D_aeklx")])
+cloud_textures = Array[Texture2D]([SubResource("NoiseTexture2D_rceyn"), SubResource("NoiseTexture2D_4hbto"), SubResource("NoiseTexture2D_twces")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_3iodi")
 
+[node name="Planet" type="Node2D" parent="."]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("2_2d0v2")
+is_spinning = true
+spin = Vector2(0.07, 0)
+texture_offset = Vector2(2.676, 0)
+light_direction = Vector3(0.771, 0, 0.637)
+
+[node name="Planet" type="Sprite2D" parent="Planet"]
+unique_name_in_owner = true
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ook7y")
+texture = SubResource("NoiseTexture2D_jq2rd")
+script = ExtResource("3_ii14l")
+texture_offset = Vector2(2.676, 0)
+light_direction = Vector3(0.771, 0, 0.637)
+light_minimum = 0.0
+
+[node name="Water" type="Sprite2D" parent="Planet"]
+unique_name_in_owner = true
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("ShaderMaterial_k07qw")
+texture = SubResource("NoiseTexture2D_gjuv2")
+script = ExtResource("3_ii14l")
+texture_offset = Vector2(2.676, 0)
+light_direction = Vector3(0.771, 0, 0.637)
+light_minimum = 0.0
+
+[node name="Clouds" type="Sprite2D" parent="Planet"]
+unique_name_in_owner = true
+texture_filter = 2
+texture_repeat = 2
+material = SubResource("ShaderMaterial_jvgtc")
+texture = SubResource("NoiseTexture2D_k4g0g")
+script = ExtResource("3_ii14l")
+texture_offset = Vector2(2.676, 0)
+texture_offset_scale = 2.0
+light_direction = Vector3(0.771, 0, 0.637)
+light_minimum = 0.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_ait6n")
 texture = ExtResource("1_mknme")
 
