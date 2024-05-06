@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cj7a4lchc8gh8"]
+[gd_scene load_steps=30 format=3 uid="uid://cj7a4lchc8gh8"]
 
 [ext_resource type="Script" path="res://Game/Circle/circle.gd" id="1_1qqjh"]
 [ext_resource type="Texture2D" uid="uid://d2cyw3pwjae06" path="res://Assets/Images/circle_1.png" id="1_mknme"]
@@ -7,123 +7,47 @@
 [ext_resource type="Shader" path="res://addons/planet2d/planet.gdshader" id="4_d1meo"]
 [ext_resource type="Texture2D" uid="uid://bt7fwxlj42i5q" path="res://Assets/Images/circle_3.png" id="4_v6km0"]
 
-[sub_resource type="Gradient" id="Gradient_7or45"]
-offsets = PackedFloat32Array(0, 0.0724638, 0.557971, 1)
-colors = PackedColorArray(1, 0.853507, 0.638991, 1, 0.857104, 0.88878, 0.47409, 1, 0.432067, 0.65027, 9.62615e-07, 1, 0.59077, 0.308612, 3.85046e-07, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_knca4"]
-metadata/_preview_in_3d_space_ = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yxbs4"]
-seamless = true
-color_ramp = SubResource("Gradient_7or45")
-noise = SubResource("FastNoiseLite_knca4")
-
-[sub_resource type="Gradient" id="Gradient_0wtyh"]
-offsets = PackedFloat32Array(0, 0.0724638, 0.563725, 1)
-colors = PackedColorArray(1, 0.853507, 0.638991, 1, 0.977183, 0.852522, 0.095893, 1, 0.973813, 0.315955, 5.77569e-07, 1, 0.59077, 0.308612, 3.85046e-07, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ey4nw"]
-seed = 10
-metadata/_preview_in_3d_space_ = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7q4cv"]
-seamless = true
-color_ramp = SubResource("Gradient_0wtyh")
-noise = SubResource("FastNoiseLite_ey4nw")
-
-[sub_resource type="Gradient" id="Gradient_66brs"]
-offsets = PackedFloat32Array(0, 0.0784314, 0.558824, 1)
-colors = PackedColorArray(0.82517, 0.878141, 1, 1, 0.708546, 0.878663, 1, 1, 0.111193, 0.58019, 1, 1, 0.112101, 0.247072, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_j7w65"]
-seed = 20
-metadata/_preview_in_3d_space_ = true
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2vku7"]
-seamless = true
-color_ramp = SubResource("Gradient_66brs")
-noise = SubResource("FastNoiseLite_j7w65")
-
-[sub_resource type="Gradient" id="Gradient_imf5g"]
-offsets = PackedFloat32Array(0.311594, 0.463768, 0.478261)
-colors = PackedColorArray(0, 0.0548293, 0.401801, 1, 0, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_xk0ej"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vu4l7"]
-seamless = true
-color_ramp = SubResource("Gradient_imf5g")
-noise = SubResource("FastNoiseLite_xk0ej")
-
-[sub_resource type="Gradient" id="Gradient_k8mlj"]
-offsets = PackedFloat32Array(0.303922, 0.463768, 0.478261)
-colors = PackedColorArray(1, 0, 0.0117647, 1, 1, 0.756598, 0.21573, 1, 1, 1, 1, 0)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2ordf"]
-seed = 10
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xhk4k"]
-seamless = true
-color_ramp = SubResource("Gradient_k8mlj")
-noise = SubResource("FastNoiseLite_2ordf")
-
-[sub_resource type="Gradient" id="Gradient_oxgsc"]
-offsets = PackedFloat32Array(0.29902, 0.463768, 0.478261)
-colors = PackedColorArray(0.798526, 0.87625, 0.989161, 1, 0.438339, 0.649569, 0.992499, 1, 1, 1, 1, 0)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_r33di"]
-seed = 20
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aeklx"]
-seamless = true
-color_ramp = SubResource("Gradient_oxgsc")
-noise = SubResource("FastNoiseLite_r33di")
-
-[sub_resource type="Gradient" id="Gradient_hqkgn"]
-offsets = PackedFloat32Array(0.702899, 0.927536, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_wle3r"]
-seed = 180473
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rceyn"]
-width = 520
-height = 520
-seamless = true
-color_ramp = SubResource("Gradient_hqkgn")
-noise = SubResource("FastNoiseLite_wle3r")
-
-[sub_resource type="Gradient" id="Gradient_t36jg"]
-offsets = PackedFloat32Array(0.702899, 0.927536, 1)
-colors = PackedColorArray(0.42477, 0.562889, 0.383602, 0, 0.380392, 0.47451, 0.0235294, 1, 0.227829, 0.32154, 0.0171991, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_4h1gl"]
-seed = 190473
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4hbto"]
-width = 520
-height = 520
-seamless = true
-color_ramp = SubResource("Gradient_t36jg")
-noise = SubResource("FastNoiseLite_4h1gl")
-
-[sub_resource type="Gradient" id="Gradient_kmka3"]
-offsets = PackedFloat32Array(0.702899, 0.926471, 1)
-colors = PackedColorArray(1, 1, 1, 0, 0.14629, 0.0660041, 0.0680245, 1, 0.288489, 0.199169, 0.212167, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7m2ww"]
-seed = 180473
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_twces"]
-width = 520
-height = 520
-seamless = true
-color_ramp = SubResource("Gradient_kmka3")
-noise = SubResource("FastNoiseLite_7m2ww")
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_3iodi"]
 radius = 134.034
+
+[sub_resource type="Shader" id="Shader_ec12e"]
+code = "shader_type canvas_item;
+
+uniform vec4 color : source_color;
+uniform float speed : hint_range(0, 20);
+uniform float radius : hint_range(0, 1);
+uniform float width : hint_range(0, 1);
+
+void fragment() {
+	vec2 center = vec2(0.5);
+	float time = TIME * speed;
+	float rad = radius - 0.005 * sin(time);
+	float thickness = width + 0.05 * cos(time);
+	float dist = distance(UV, center);
+	COLOR.rgb = color.rgb;
+	COLOR.a = texture(TEXTURE, UV).a + smoothstep(thickness/2.0, 0.0, abs(dist - rad));
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ait6n"]
+shader = SubResource("Shader_ec12e")
+shader_parameter/color = Color(0.101961, 1, 0, 1)
+shader_parameter/speed = 0.0
+shader_parameter/radius = 0.289
+shader_parameter/width = 0.2
+
+[sub_resource type="Shader" id="Shader_houdk"]
+code = "shader_type canvas_item;
+
+uniform vec4 color : source_color;
+
+void fragment() {
+	COLOR = vec4(color.rgb, COLOR.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_adlog"]
+shader = SubResource("Shader_houdk")
+shader_parameter/color = Color(0.00729171, 0, 0.910716, 1)
 
 [sub_resource type="Shader" id="Shader_gpd5v"]
 code = "shader_type canvas_item;
@@ -325,45 +249,6 @@ seamless = true
 color_ramp = SubResource("Gradient_pxrf6")
 noise = SubResource("FastNoiseLite_s66g1")
 
-[sub_resource type="Shader" id="Shader_ec12e"]
-code = "shader_type canvas_item;
-
-uniform vec4 color : source_color;
-uniform float speed : hint_range(0, 20);
-uniform float radius : hint_range(0, 1);
-uniform float width : hint_range(0, 1);
-
-void fragment() {
-	vec2 center = vec2(0.5);
-	float time = TIME * speed;
-	float rad = radius - 0.005 * sin(time);
-	float thickness = width + 0.05 * cos(time);
-	float dist = distance(UV, center);
-	COLOR.rgb = color.rgb;
-	COLOR.a = texture(TEXTURE, UV).a + smoothstep(thickness/2.0, 0.0, abs(dist - rad));
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ait6n"]
-shader = SubResource("Shader_ec12e")
-shader_parameter/color = Color(0.101961, 1, 0, 1)
-shader_parameter/speed = 0.0
-shader_parameter/radius = 0.289
-shader_parameter/width = 0.2
-
-[sub_resource type="Shader" id="Shader_houdk"]
-code = "shader_type canvas_item;
-
-uniform vec4 color : source_color;
-
-void fragment() {
-	COLOR = vec4(color.rgb, COLOR.a);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_adlog"]
-shader = SubResource("Shader_houdk")
-shader_parameter/color = Color(0.00729171, 0, 0.910716, 1)
-
 [sub_resource type="Animation" id="Animation_0apxe"]
 length = 0.001
 tracks/0/type = "value"
@@ -393,7 +278,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SpriteEffect:visible")
+tracks/2/path = NodePath("Sprite2D/SpriteEffect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -405,7 +290,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SpriteEffect:scale")
+tracks/3/path = NodePath("Sprite2D/SpriteEffect:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -417,7 +302,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("SpriteEffect:self_modulate")
+tracks/4/path = NodePath("Sprite2D/SpriteEffect:self_modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -434,7 +319,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteEffect:visible")
+tracks/0/path = NodePath("Sprite2D/SpriteEffect:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -446,7 +331,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SpriteEffect:scale")
+tracks/1/path = NodePath("Sprite2D/SpriteEffect:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -458,7 +343,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SpriteEffect:self_modulate")
+tracks/2/path = NodePath("Sprite2D/SpriteEffect:self_modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -509,15 +394,24 @@ font_size = 42
 
 [node name="Circle" type="Area2D" groups=["circles"]]
 script = ExtResource("1_1qqjh")
-planet_textures = Array[Texture2D]([SubResource("NoiseTexture2D_yxbs4"), SubResource("NoiseTexture2D_7q4cv"), SubResource("NoiseTexture2D_2vku7")])
-water_textures = Array[Texture2D]([SubResource("NoiseTexture2D_vu4l7"), SubResource("NoiseTexture2D_xhk4k"), SubResource("NoiseTexture2D_aeklx")])
-cloud_textures = Array[Texture2D]([SubResource("NoiseTexture2D_rceyn"), SubResource("NoiseTexture2D_4hbto"), SubResource("NoiseTexture2D_twces")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
 shape = SubResource("CircleShape2D_3iodi")
 
-[node name="Planet" type="Node2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ait6n")
+texture = ExtResource("1_mknme")
+
+[node name="SpriteEffect" type="Sprite2D" parent="Sprite2D"]
+unique_name_in_owner = true
+visible = false
+material = SubResource("ShaderMaterial_adlog")
+texture = ExtResource("1_mknme")
+
+[node name="Planet" type="Node2D" parent="Sprite2D"]
+visible = false
 scale = Vector2(0.3, 0.3)
 script = ExtResource("2_2d0v2")
 is_spinning = true
@@ -525,8 +419,9 @@ spin = Vector2(0.07, 0)
 texture_offset = Vector2(2.676, 0)
 light_direction = Vector3(0.771, 0, 0.637)
 
-[node name="Planet" type="Sprite2D" parent="Planet"]
+[node name="Planet" type="Sprite2D" parent="Sprite2D/Planet"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 2
 texture_repeat = 2
 material = SubResource("ShaderMaterial_ook7y")
@@ -536,8 +431,9 @@ texture_offset = Vector2(2.676, 0)
 light_direction = Vector3(0.771, 0, 0.637)
 light_minimum = 0.0
 
-[node name="Water" type="Sprite2D" parent="Planet"]
+[node name="Water" type="Sprite2D" parent="Sprite2D/Planet"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 2
 texture_repeat = 2
 material = SubResource("ShaderMaterial_k07qw")
@@ -547,8 +443,9 @@ texture_offset = Vector2(2.676, 0)
 light_direction = Vector3(0.771, 0, 0.637)
 light_minimum = 0.0
 
-[node name="Clouds" type="Sprite2D" parent="Planet"]
+[node name="Clouds" type="Sprite2D" parent="Sprite2D/Planet"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 2
 texture_repeat = 2
 material = SubResource("ShaderMaterial_jvgtc")
@@ -558,18 +455,6 @@ texture_offset = Vector2(2.676, 0)
 texture_offset_scale = 2.0
 light_direction = Vector3(0.771, 0, 0.637)
 light_minimum = 0.0
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_ait6n")
-texture = ExtResource("1_mknme")
-
-[node name="SpriteEffect" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-material = SubResource("ShaderMaterial_adlog")
-texture = ExtResource("1_mknme")
 
 [node name="Pivot" type="Node2D" parent="."]
 unique_name_in_owner = true

@@ -4,9 +4,9 @@ signal orbit_completed
 
 enum MODE {UNLIMITED, LIMITED}
 
-@export var planet_textures: Array[Texture2D]
-@export var water_textures: Array[Texture2D]
-@export var cloud_textures: Array[Texture2D]
+#@export var planet_textures: Array[Texture2D]
+#@export var water_textures: Array[Texture2D]
+#@export var cloud_textures: Array[Texture2D]
 
 var jumper: Jumper = null
 var silent_capture: bool = false
@@ -41,12 +41,12 @@ var current_orbits: int = 0 # Number of orbits the jumper has completed
 var move_range: float = 0.0 # How far the circle can move. Zero means it won't move
 var move_speed: float = 1.0 # How fast the circle moves
 
-var planet_colors: Array[Color] = [
-	Color.GREEN, Color.GRAY, Color.YELLOW,
-	Color.RED, Color.WHITE, Color.BLUE,
-	Color.BLACK, Color.CYAN, Color.DARK_BLUE,
-	Color.DARK_GOLDENROD, Color.DARK_GREEN
-]
+#var planet_colors: Array[Color] = [
+	#Color.GREEN, Color.GRAY, Color.YELLOW,
+	#Color.RED, Color.WHITE, Color.BLUE,
+	#Color.BLACK, Color.CYAN, Color.DARK_BLUE,
+	#Color.DARK_GOLDENROD, Color.DARK_GREEN
+#]
 
 @onready var pivot: Node2D = %Pivot
 @onready var collision_shape: CollisionShape2D = %CollisionShape2D
@@ -57,9 +57,9 @@ var planet_colors: Array[Color] = [
 @onready var orbits_label: Label = %OrbitsLabel
 @onready var orbit_progress_bar: TextureProgressBar = %OrbitProgressBar
 
-@onready var planet: PlanetLayer = %Planet
-@onready var water: PlanetLayer = %Water
-@onready var clouds: PlanetLayer = %Clouds
+#@onready var planet: PlanetLayer = %Planet
+#@onready var water: PlanetLayer = %Water
+#@onready var clouds: PlanetLayer = %Clouds
 
 
 func _ready() -> void:
@@ -71,28 +71,18 @@ func _ready() -> void:
 
 func update_theme() -> void:
 	# Update the theme colors
-	#sprite.material = sprite.material.duplicate()
-	#sprite_effect.material = sprite_effect.material.duplicate()
-	#sprite_effect.material.set_shader_parameter("color", sprite.material.get_shader_parameter("color"))
-
-	var type_index: int = randi_range(0, 2)
-
-	#planet.texture = planet.texture.duplicate(true)
-	planet.texture = planet_textures[type_index]
-	planet.texture.noise.seed = randi_range(0, 10000)
-	#planet.texture.color_ramp.set_color(2, planet_colors.pick_random())
-	
-	#water.texture = water.texture.duplicate(true)
-	water.texture = water_textures[type_index]
-	water.texture.noise.seed = randi_range(0, 10000)
-	#water.texture.color_ramp.set_color(0, planet_colors.pick_random())
-	
-	#clouds.texture = clouds.texture.duplicate(true)
-	clouds.texture = cloud_textures[type_index]
-	clouds.texture.noise.seed = randi_range(0, 10000)
-	#clouds.texture.color_ramp.set_color(2, planet_colors.pick_random())
-
+	sprite.material = sprite.material.duplicate()
+	sprite_effect.material = sprite_effect.material.duplicate()
+	sprite_effect.material.set_shader_parameter("color", sprite.material.get_shader_parameter("color"))
 	orbit_progress_bar.tint_progress = Settings.theme["circle_fill"]
+
+	#var type_index: int = randi_range(0, 2)
+	#planet.texture = planet_textures[type_index]
+	#planet.texture.noise.seed = randi_range(0, 10000)
+	#water.texture = water_textures[type_index]
+	#water.texture.noise.seed = randi_range(0, 10000)
+	#clouds.texture = cloud_textures[type_index]
+	#clouds.texture.noise.seed = randi_range(0, 10000)
 
 
 func init_circle(circle_position: Vector2, level: int, first_circle: bool = false) -> void:
